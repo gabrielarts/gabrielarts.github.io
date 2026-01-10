@@ -41,7 +41,7 @@ header a{
 
 /* HERO */
 .hero{
-  padding:90px 24px 40px;
+  padding:100px 24px 60px;
   max-width:1100px;
   margin:auto;
 }
@@ -60,13 +60,13 @@ header a{
 
 /* SECTION */
 .section{
-  padding:60px 24px;
+  padding:80px 24px;
   max-width:1100px;
   margin:auto;
 }
 
 .section h2{
-  margin-bottom:36px;
+  margin-bottom:40px;
   font-size:22px;
 }
 
@@ -171,17 +171,79 @@ button:hover{
 /* FOOTER */
 footer{
   text-align:center;
-  padding:48px 20px;
+  padding:60px 20px;
   font-size:13px;
   border-top:1px solid #fff;
-  opacity:.8;
 }
 
-footer span{
-  display:block;
-  margin-top:8px;
-  font-size:12px;
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:999;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.modal img{
+  max-width:90%;
+  max-height:70%;
+  opacity:0;
+  transition:opacity .4s ease;
+}
+
+.modal.show img{
+  opacity:1;
+}
+
+/* CAPTION */
+.modal .caption{
+  margin-top:20px;
+  text-align:center;
+  max-width:600px;
+}
+
+.modal .caption h4{
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.modal .caption p{
+  font-size:14px;
   opacity:.7;
+}
+
+/* CONTROLS */
+.modal .close,
+.modal .prev,
+.modal .next{
+  position:absolute;
+  font-size:36px;
+  cursor:pointer;
+  opacity:0;
+  transition:opacity .3s ease;
+}
+
+.modal .close{
+  top:20px;
+  right:24px;
+}
+
+.modal .prev{
+  left:24px;
+}
+
+.modal .next{
+  right:24px;
+}
+
+.modal.show-controls .close,
+.modal.show-controls .prev,
+.modal.show-controls .next{
+  opacity:.8;
 }
 
 /* MOBILE */
@@ -297,9 +359,9 @@ footer span{
     <div class="about">
       Sou Designer há mais de 10 anos, com experiência em agências de marketing e publicidade, atuando desde a criação de conceitos até a execução visual de projetos completos.
       <br><br>
-      Ao longo da minha trajetória, já trabalhei com marcas como Itaú, Oreo, Bic e Nivea.
+      Ao longo da minha trajetória, já trabalhei com marcas como Itaú, Oreo, Bic e Nivea, o que me deu uma visão prática sobre como unir estética, estratégia e consistência visual.
       <br><br>
-      Hoje busco colaborar com marcas que valorizem uma comunicação bem construída.
+      Hoje busco colaborar com marcas e negócios que valorizem uma comunicação bem construída, seja em projetos de beleza e estética, alimentação, mercado imobiliário ou outros segmentos que entendam o design como parte essencial da experiência da marca.
     </div>
   </div>
 </section>
@@ -316,8 +378,105 @@ footer span{
 
 <footer>
   © 2026 — Gabriel Damasceno
-  <span>Site desenvolvido por mim com auxílio de inteligência artificial.</span>
 </footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <span class="close">&times;</span>
+  <span class="prev">&#10094;</span>
+  <img id="modalImg">
+  <span class="next">&#10095;</span>
+
+  <div class="caption">
+    <h4 id="captionTitle"></h4>
+    <p id="captionDesc"></p>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const captionTitle = document.getElementById("captionTitle");
+const captionDesc = document.getElementById("captionDesc");
+
+const projects = [...document.querySelectorAll(".project")];
+let current = 0;
+let controlsTimeout;
+
+/* OPEN */
+projects.forEach((proj,i)=>{
+  proj.addEventListener("click", ()=>{
+    current = i;
+    openModal();
+  });
+});
+
+function openModal(){
+  const img = projects[current].querySelector("img");
+  modalImg.src = img.src;
+  captionTitle.textContent = projects[current].dataset.title;
+  captionDesc.textContent = projects[current].dataset.desc;
+
+  modal.style.display = "flex";
+  modal.classList.add("show");
+  showControls();
+  preload();
+}
+
+/* CONTROLS */
+function showControls(){
+  modal.classList.add("show-controls");
+  clearTimeout(controlsTimeout);
+  controlsTimeout = setTimeout(()=>{
+    modal.classList.remove("show-controls");
+  },1500);
+}
+
+function next(){
+  current = (current + 1) % projects.length;
+  transitionImage();
+}
+
+function prev(){
+  current = (current - 1 + projects.length) % projects.length;
+  transitionImage();
+}
+
+function transitionImage(){
+  modal.classList.remove("show");
+  setTimeout(openModal,300);
+}
+
+/* PRELOAD */
+function preload(){
+  [current+1, current-1].forEach(i=>{
+    const index = (i + projects.length) % projects.length;
+    const img = new Image();
+    img.src = projects[index].querySelector("img").src;
+  });
+}
+
+/* EVENTS */
+modal.querySelector(".next").onclick = next;
+modal.querySelector(".prev").onclick = prev;
+modal.querySelector(".close").onclick = ()=> modal.style.display="none";
+
+document.addEventListener("keydown", e=>{
+  if(modal.style.display !== "flex") return;
+  if(e.key==="ArrowRight") next();
+  if(e.key==="ArrowLeft") prev();
+  if(e.key==="Escape") modal.style.display="none";
+});
+
+/* SWIPE */
+let startX=0;
+modal.addEventListener("touchstart", e=> startX = e.touches[0].clientX);
+modal.addEventListener("touchend", e=>{
+  let endX = e.changedTouches[0].clientX;
+  if(startX-endX>50) next();
+  if(endX-startX>50) prev();
+});
+</script>
 
 </body>
 </html>
