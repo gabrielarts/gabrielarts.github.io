@@ -145,8 +145,22 @@ header a{
 }
 
 /* CONTACT */
-.contact{
-  max-width:500px;
+.contact p{
+  font-size:16px;
+  line-height:1.8;
+  margin-bottom:12px;
+}
+
+.contact a{
+  color:#fff;
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.4);
+  transition:opacity .2s ease, border-color .2s ease;
+}
+
+.contact a:hover{
+  opacity:.7;
+  border-color:#fff;
 }
 
 input, textarea, button{
@@ -367,14 +381,32 @@ footer{
 </section>
 
 <section class="section" id="contact">
-  <h2>Contato</h2>
+  <h2>Fale comigo</h2>
+
   <div class="contact">
-    <input placeholder="Nome">
-    <input placeholder="Email">
-    <textarea rows="5" placeholder="Mensagem"></textarea>
-    <button>Vamos conversar</button>
+    <p>
+      <strong>WhatsApp:</strong>
+      <a href="https://wa.me/5511933057034" target="_blank">
+        (11) 93305 7034
+      </a>
+    </p>
+
+    <p>
+      <strong>E-mail:</strong>
+      <a href="mailto:cantocriativo.sp@gmail.com">
+        cantocriativo.sp@gmail.com
+      </a>
+    </p>
+
+    <p>
+      <strong>Instagram:</strong>
+      <a href="https://www.instagram.com/gabs.da96/" target="_blank">
+        @gabs.da96
+      </a>
+    </p>
   </div>
 </section>
+
 
 <footer>
   © 2026 — Gabriel Damasceno
@@ -480,3 +512,4 @@ modal.addEventListener("touchend", e=>{
 
 </body>
 </html>
+
