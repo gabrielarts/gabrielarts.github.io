@@ -145,22 +145,8 @@ header a{
 }
 
 /* CONTACT */
-.contact p{
-  font-size:16px;
-  line-height:1.8;
-  margin-bottom:12px;
-}
-
-.contact a{
-  color:#fff;
-  text-decoration:none;
-  border-bottom:1px solid rgba(255,255,255,.4);
-  transition:opacity .2s ease, border-color .2s ease;
-}
-
-.contact a:hover{
-  opacity:.7;
-  border-color:#fff;
+.contact{
+  max-width:500px;
 }
 
 input, textarea, button{
@@ -180,39 +166,6 @@ button{
 button:hover{
   background:#fff;
   color:#000;
-#contact{
-  text-align:center;
-}
-
-.contact-text{
-  max-width:480px;
-  margin:0 auto 20px;
-  font-size:15px;
-  line-height:1.6;
-  opacity:.85;
-}
-
-.contact-links{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  font-size:14px;
-}
-
-.contact-links a{
-  color:#fff;
-  text-decoration:none;
-  opacity:.85;
-  transition:opacity .2s ease;
-}
-
-.contact-links a:hover{
-  opacity:1;
-}
-
-.contact-links span{
-  opacity:.4;
 }
 
 /* FOOTER */
@@ -414,36 +367,17 @@ footer{
 </section>
 
 <section class="section" id="contact">
-  <h2>Fale comigo</h2>
-
-  <p class="contact-text">
-    Vamos conversar sobre projetos, ideias ou oportunidades.
-  </p>
-
-  <div class="contact-links">
-    <a href="https://wa.me/5511933057034" target="_blank">
-      WhatsApp
-    </a>
-
-    <span>|</span>
-
-    <a href="mailto:cantocriativo.sp@gmail.com">
-      E-mail
-    </a>
-
-    <span>|</span>
-
-    <a href="https://www.instagram.com/gabs.da96/" target="_blank">
-      Instagram
-    </a>
+  <h2>Contato</h2>
+  <div class="contact">
+    <input placeholder="Nome">
+    <input placeholder="Email">
+    <textarea rows="5" placeholder="Mensagem"></textarea>
+    <button>Vamos conversar</button>
   </div>
 </section>
 
-
-
 <footer>
-  © 2026 — Gabriel Damasceno<br>
-  <span>Site desenvolvido por mim com apoio de inteligência artificial.</span>
+  © 2026 — Gabriel Damasceno
 </footer>
 
 <!-- MODAL -->
@@ -546,7 +480,3 @@ modal.addEventListener("touchend", e=>{
 
 </body>
 </html>
-
-
-
-
