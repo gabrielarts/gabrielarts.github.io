@@ -180,6 +180,39 @@ button{
 button:hover{
   background:#fff;
   color:#000;
+#contact{
+  text-align:center;
+}
+
+.contact-text{
+  max-width:480px;
+  margin:0 auto 20px;
+  font-size:15px;
+  line-height:1.6;
+  opacity:.85;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+}
+
+.contact-links a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.85;
+  transition:opacity .2s ease;
+}
+
+.contact-links a:hover{
+  opacity:1;
+}
+
+.contact-links span{
+  opacity:.4;
 }
 
 /* FOOTER */
@@ -383,29 +416,29 @@ footer{
 <section class="section" id="contact">
   <h2>Fale comigo</h2>
 
-  <div class="contact">
-    <p>
-      <strong>WhatsApp:</strong>
-      <a href="https://wa.me/5511933057034" target="_blank">
-        (11) 93305 7034
-      </a>
-    </p>
+  <p class="contact-text">
+    Vamos conversar sobre projetos, ideias ou oportunidades.
+  </p>
 
-    <p>
-      <strong>E-mail:</strong>
-      <a href="mailto:cantocriativo.sp@gmail.com">
-        cantocriativo.sp@gmail.com
-      </a>
-    </p>
+  <div class="contact-links">
+    <a href="https://wa.me/5511933057034" target="_blank">
+      WhatsApp
+    </a>
 
-    <p>
-      <strong>Instagram:</strong>
-      <a href="https://www.instagram.com/gabs.da96/" target="_blank">
-        @gabs.da96
-      </a>
-    </p>
+    <span>|</span>
+
+    <a href="mailto:cantocriativo.sp@gmail.com">
+      E-mail
+    </a>
+
+    <span>|</span>
+
+    <a href="https://www.instagram.com/gabs.da96/" target="_blank">
+      Instagram
+    </a>
   </div>
 </section>
+
 
 
 <footer>
@@ -513,6 +546,7 @@ modal.addEventListener("touchend", e=>{
 
 </body>
 </html>
+
 
 
 
