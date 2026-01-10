@@ -48,13 +48,12 @@ header a{
 
 .hero h1{
   font-size:48px;
-  margin-bottom:20px;
+  margin-bottom:16px;
 }
 
 .hero p{
-  max-width:720px;
+  max-width:640px;
   font-size:18px;
-  line-height:1.5;
   opacity:.85;
 }
 
@@ -94,27 +93,11 @@ header a{
   transform:scale(1.01);
 }
 
-/* PROJECT INFO */
-.project-info{
-  padding-top:16px;
-}
-
-.project-info h4{
-  font-size:18px;
-  margin-bottom:6px;
-}
-
-.project-info p{
-  font-size:14px;
-  opacity:.7;
-  line-height:1.4;
-}
-
 /* ABOUT */
 .about-wrapper{
   display:flex;
   gap:40px;
-  max-width:900px;
+  max-width:800px;
 }
 
 .about-photo{
@@ -140,7 +123,7 @@ header a{
 
 .about{
   font-size:16px;
-  line-height:1.7;
+  line-height:1.6;
   opacity:.9;
 }
 
@@ -271,80 +254,39 @@ footer{
 <section class="hero">
   <h1>Gabriel Damasceno</h1>
   <p>
-    Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência, atuando entre conceito, estética e estratégia.
-    Já trabalhei com grandes marcas e hoje busco projetos que valorizem clareza, consistência e identidade visual bem construída.
+    Designer visual focado em conceito, estética e clareza.
+    Desenvolvo projetos que fortalecem marcas e organizam mensagens.
   </p>
 </section>
 
 <section class="section" id="work">
-  <h2>Projetos</h2>
+  <h2>Projetos — Beleza & Estética</h2>
 
   <div class="grid">
-
     <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
       <img src="projeto1.png" loading="lazy">
-      <div class="project-info">
-        <h4>Beleza não é ser igual</h4>
-        <p>Conceito e direção de arte.</p>
-      </div>
     </div>
-
     <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado.">
       <img src="projeto2.png" loading="lazy">
-      <div class="project-info">
-        <h4>Brilho não é filtro</h4>
-        <p>Comunicação visual focada em resultado.</p>
-      </div>
     </div>
-
     <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível.">
       <img src="projeto3.png" loading="lazy">
-      <div class="project-info">
-        <h4>Brilho de salão em casa</h4>
-        <p>Design informativo e acessível.</p>
-      </div>
     </div>
-
     <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima.">
       <img src="projeto4.png" loading="lazy">
-      <div class="project-info">
-        <h4>O brilho que reflete a sua força</h4>
-        <p>Estética e autoestima.</p>
-      </div>
     </div>
-
     <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe.">
       <img src="projeto5.png" loading="lazy">
-      <div class="project-info">
-        <h4>Maquiagem que revela</h4>
-        <p>Foco em textura e detalhe.</p>
-      </div>
     </div>
-
     <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada.">
       <img src="projeto6.png" loading="lazy">
-      <div class="project-info">
-        <h4>Bella Essence</h4>
-        <p>Identidade visual sofisticada.</p>
-      </div>
     </div>
-
     <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana.">
       <img src="projeto7.png" loading="lazy">
-      <div class="project-info">
-        <h4>Sextou sem ficar na régua</h4>
-        <p>Campanha direta e humana.</p>
-      </div>
     </div>
-
-    <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência visual.">
+    <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência.">
       <img src="projeto8.png" loading="lazy">
-      <div class="project-info">
-        <h4>Presença não se improvisa</h4>
-        <p>Autoridade e consistência visual.</p>
-      </div>
     </div>
-
   </div>
 </section>
 
@@ -357,11 +299,11 @@ footer{
     </div>
 
     <div class="about">
-      Sou Designer há mais de 10 anos, com experiência em agências de marketing e publicidade, atuando desde a criação de conceitos até a execução visual de projetos completos.
+      Designer visual há mais de 10 anos, com passagem por agências de marketing
+      e publicidade. Já atuei com marcas como Itaú, Oreo, Bic e Nivea.
       <br><br>
-      Ao longo da minha trajetória, já trabalhei com marcas como Itaú, Oreo, Bic e Nivea, o que me deu uma visão prática sobre como unir estética, estratégia e consistência visual.
-      <br><br>
-      Hoje busco colaborar com marcas e negócios que valorizem uma comunicação bem construída, seja em projetos de beleza e estética, alimentação, mercado imobiliário ou outros segmentos que entendam o design como parte essencial da experiência da marca.
+      Atualmente busco projetos nos segmentos de beleza, estética, alimentação
+      e mercado imobiliário.
     </div>
   </div>
 </section>
@@ -444,7 +386,9 @@ function prev(){
 
 function transitionImage(){
   modal.classList.remove("show");
-  setTimeout(openModal,300);
+  setTimeout(()=>{
+    openModal();
+  },300);
 }
 
 /* PRELOAD */
