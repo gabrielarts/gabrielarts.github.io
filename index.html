@@ -52,7 +52,7 @@ header a{
 }
 
 .hero p{
-  max-width:640px;
+  max-width:720px;
   font-size:18px;
   opacity:.85;
 }
@@ -93,6 +93,21 @@ header a{
   transform:scale(1.01);
 }
 
+/* PROJECT INFO */
+.project-info{
+  margin-top:12px;
+}
+
+.project-info h3{
+  font-size:15px;
+  margin-bottom:4px;
+}
+
+.project-info p{
+  font-size:13px;
+  opacity:.7;
+}
+
 /* ABOUT */
 .about-wrapper{
   display:flex;
@@ -128,27 +143,38 @@ header a{
 }
 
 /* CONTACT */
-.contact{
+.contact-section{
+  text-align:center;
   max-width:500px;
+  margin:auto;
 }
 
-input, textarea, button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  background:#000;
+.contact-section h2{
+  margin-bottom:24px;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  font-size:14px;
+}
+
+.contact-links a{
   color:#fff;
-  border:1px solid #fff;
+  text-decoration:none;
+  opacity:.8;
+  transition:opacity .2s ease;
 }
 
-button{
-  margin-top:20px;
-  cursor:pointer;
+.contact-links a:hover{
+  opacity:1;
 }
 
-button:hover{
-  background:#fff;
-  color:#000;
+.contact-links span{
+  opacity:.4;
 }
 
 /* FOOTER */
@@ -231,48 +257,37 @@ footer{
 
 /* MOBILE */
 @media (max-width:768px){
-  .hero h1{ font-size:36px; }
-  header nav{ display:none; }
-  .grid{ grid-template-columns:1fr; gap:60px; }
-  .about-wrapper{ flex-direction:column; }
-  .about-photo{ width:180px; height:180px; }
-}
+  .hero,
+  .section,
+  .about,
+  .caption,
+  .contact-section{
+    text-align:center;
+  }
 
-  /* CONTACT LINKS */
-.contact-section{
-  text-align:center;
-}
+  .hero h1{
+    font-size:36px;
+  }
 
-.contact-section h2{
-  margin-bottom:24px;
-}
+  header nav{
+    display:none;
+  }
 
-.contact-links{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-  font-size:14px;
-}
+  .grid{
+    grid-template-columns:1fr;
+    gap:60px;
+  }
 
-.contact-links a{
-  color:#fff;
-  text-decoration:none;
-  opacity:.8;
-  transition:opacity .2s ease;
-}
+  .about-wrapper{
+    flex-direction:column;
+    align-items:center;
+  }
 
-.contact-links a:hover{
-  opacity:1;
-}
+  .about-photo{
+    width:180px;
+    height:180px;
+  }
 
-.contact-links span{
-  opacity:.4;
-}
-
-/* MOBILE */
-@media (max-width:768px){
   .contact-links{
     flex-direction:column;
     gap:8px;
@@ -282,7 +297,6 @@ footer{
     display:none;
   }
 }
-
 </style>
 </head>
 
@@ -300,8 +314,10 @@ footer{
 <section class="hero">
   <h1>Gabriel Damasceno</h1>
   <p>
-    Designer visual focado em conceito, estética e clareza.
-    Desenvolvo projetos que fortalecem marcas e organizam mensagens.
+    Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
+    atuando entre conceito, estética e estratégia. Já trabalhei com grandes
+    marcas e hoje busco projetos que valorizem clareza, consistência e
+    identidade visual bem construída.
   </p>
 </section>
 
@@ -309,30 +325,39 @@ footer{
   <h2>Projetos — Beleza & Estética</h2>
 
   <div class="grid">
+
     <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
-      <img src="projeto1.png" loading="lazy">
+      <img src="projeto1.png" loading="lazy" alt="">
+      <div class="project-info">
+        <h3>Beleza não é ser igual</h3>
+        <p>Conceito e direção de arte.</p>
+      </div>
     </div>
+
     <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado.">
-      <img src="projeto2.png" loading="lazy">
+      <img src="projeto2.png" loading="lazy" alt="">
+      <div class="project-info">
+        <h3>Brilho não é filtro</h3>
+        <p>Comunicação visual focada em resultado.</p>
+      </div>
     </div>
+
     <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível.">
-      <img src="projeto3.png" loading="lazy">
+      <img src="projeto3.png" loading="lazy" alt="">
+      <div class="project-info">
+        <h3>Brilho de salão em casa</h3>
+        <p>Design informativo e acessível.</p>
+      </div>
     </div>
+
     <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima.">
-      <img src="projeto4.png" loading="lazy">
+      <img src="projeto4.png" loading="lazy" alt="">
+      <div class="project-info">
+        <h3>O brilho que reflete a sua força</h3>
+        <p>Estética e autoestima.</p>
+      </div>
     </div>
-    <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe.">
-      <img src="projeto5.png" loading="lazy">
-    </div>
-    <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada.">
-      <img src="projeto6.png" loading="lazy">
-    </div>
-    <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana.">
-      <img src="projeto7.png" loading="lazy">
-    </div>
-    <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência.">
-      <img src="projeto8.png" loading="lazy">
-    </div>
+
   </div>
 </section>
 
@@ -341,15 +366,16 @@ footer{
 
   <div class="about-wrapper">
     <div class="about-photo">
-      <img src="perfil.png" loading="lazy">
+      <img src="perfil.png" loading="lazy" alt="">
     </div>
 
     <div class="about">
-      Designer visual há mais de 10 anos, com passagem por agências de marketing
-      e publicidade. Já atuei com marcas como Itaú, Oreo, Bic e Nivea.
+      Sou Designer há mais de 10 anos, com passagem por agências de marketing e
+      projetos para marcas como Itaú, Oreo, Bic e Nivea. Trabalho da ideia à
+      execução, unindo estética, estratégia e impacto visual.
       <br><br>
-      Atualmente busco projetos nos segmentos de beleza, estética, alimentação
-      e mercado imobiliário.
+      Hoje colaboro com marcas que entendem o design como experiência e sabem
+      que uma comunicação bem construída faz toda a diferença.
     </div>
   </div>
 </section>
@@ -358,24 +384,13 @@ footer{
   <h2>Fale comigo</h2>
 
   <div class="contact-links">
-    <a href="https://wa.me/5511933057034" target="_blank">
-      WhatsApp: (11) 93305 7034
-    </a>
-
+    <a href="https://wa.me/5511933057034" target="_blank">WhatsApp</a>
     <span>|</span>
-
-    <a href="mailto:cantocriativo.sp@gmail.com">
-      E-mail: cantocriativo.sp@gmail.com
-    </a>
-
+    <a href="mailto:cantocriativo.sp@gmail.com">E-mail</a>
     <span>|</span>
-
-    <a href="https://www.instagram.com/gabs.da96/" target="_blank">
-      Instagram: gabs.da96
-    </a>
+    <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram</a>
   </div>
 </section>
-
 
 <footer>
   © 2026 — Gabriel Damasceno
@@ -404,7 +419,6 @@ const projects = [...document.querySelectorAll(".project")];
 let current = 0;
 let controlsTimeout;
 
-/* OPEN */
 projects.forEach((proj,i)=>{
   proj.addEventListener("click", ()=>{
     current = i;
@@ -421,10 +435,8 @@ function openModal(){
   modal.style.display = "flex";
   modal.classList.add("show");
   showControls();
-  preload();
 }
 
-/* CONTROLS */
 function showControls(){
   modal.classList.add("show-controls");
   clearTimeout(controlsTimeout);
@@ -445,21 +457,9 @@ function prev(){
 
 function transitionImage(){
   modal.classList.remove("show");
-  setTimeout(()=>{
-    openModal();
-  },300);
+  setTimeout(openModal,300);
 }
 
-/* PRELOAD */
-function preload(){
-  [current+1, current-1].forEach(i=>{
-    const index = (i + projects.length) % projects.length;
-    const img = new Image();
-    img.src = projects[index].querySelector("img").src;
-  });
-}
-
-/* EVENTS */
 modal.querySelector(".next").onclick = next;
 modal.querySelector(".prev").onclick = prev;
 modal.querySelector(".close").onclick = ()=> modal.style.display="none";
@@ -470,17 +470,7 @@ document.addEventListener("keydown", e=>{
   if(e.key==="ArrowLeft") prev();
   if(e.key==="Escape") modal.style.display="none";
 });
-
-/* SWIPE */
-let startX=0;
-modal.addEventListener("touchstart", e=> startX = e.touches[0].clientX);
-modal.addEventListener("touchend", e=>{
-  let endX = e.changedTouches[0].clientX;
-  if(startX-endX>50) next();
-  if(endX-startX>50) prev();
-});
 </script>
 
 </body>
 </html>
-
