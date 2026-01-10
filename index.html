@@ -237,6 +237,52 @@ footer{
   .about-wrapper{ flex-direction:column; }
   .about-photo{ width:180px; height:180px; }
 }
+
+  /* CONTACT LINKS */
+.contact-section{
+  text-align:center;
+}
+
+.contact-section h2{
+  margin-bottom:24px;
+}
+
+.contact-links{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  font-size:14px;
+}
+
+.contact-links a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.8;
+  transition:opacity .2s ease;
+}
+
+.contact-links a:hover{
+  opacity:1;
+}
+
+.contact-links span{
+  opacity:.4;
+}
+
+/* MOBILE */
+@media (max-width:768px){
+  .contact-links{
+    flex-direction:column;
+    gap:8px;
+  }
+
+  .contact-links span{
+    display:none;
+  }
+}
+
 </style>
 </head>
 
@@ -308,15 +354,28 @@ footer{
   </div>
 </section>
 
-<section class="section" id="contact">
-  <h2>Contato</h2>
-  <div class="contact">
-    <input placeholder="Nome">
-    <input placeholder="Email">
-    <textarea rows="5" placeholder="Mensagem"></textarea>
-    <button>Vamos conversar</button>
+<section class="section contact-section" id="contact">
+  <h2>Fale comigo</h2>
+
+  <div class="contact-links">
+    <a href="https://wa.me/5511933057034" target="_blank">
+      WhatsApp: (11) 93305 7034
+    </a>
+
+    <span>|</span>
+
+    <a href="mailto:cantocriativo.sp@gmail.com">
+      E-mail: cantocriativo.sp@gmail.com
+    </a>
+
+    <span>|</span>
+
+    <a href="https://www.instagram.com/gabs.da96/" target="_blank">
+      Instagram: gabs.da96
+    </a>
   </div>
 </section>
+
 
 <footer>
   © 2026 — Gabriel Damasceno
@@ -424,3 +483,4 @@ modal.addEventListener("touchend", e=>{
 
 </body>
 </html>
+
