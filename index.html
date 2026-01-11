@@ -113,17 +113,17 @@ header a{
   display:flex;
   gap:40px;
   max-width:820px;
-  align-items: center; /* Alinha verticalmente com o texto */
+  align-items: center;
 }
 
 .about-photo{
   width:140px;
   height:140px;
-  min-width: 140px; /* Garante que não diminua e fique oval */
+  min-width: 140px;
   min-height: 140px;
   border-radius:50%;
   overflow:hidden;
-  flex-shrink:0; /* Impede o flexbox de achatar a foto */
+  flex-shrink:0;
 }
 
 .about-photo img{
@@ -192,15 +192,22 @@ footer{
   align-items:center;
   flex-direction:column;
   touch-action: pan-y;
+  overflow: hidden; /* Evita scroll indesejado no zoom */
 }
 
 .modal img{
   max-width:90%;
-  max-height:70%;
+  max-height:85%; /* Aumentado de 70 para 85 no desktop */
   opacity:0;
-  transition:opacity .4s ease;
+  transition:opacity .4s ease, transform 0.3s ease; /* Transição para o zoom suave */
   user-select: none;
   -webkit-user-drag: none;
+  cursor: zoom-in; /* Cursor de zoom */
+}
+
+.modal img.zoomed {
+  transform: scale(1.5);
+  cursor: zoom-out;
 }
 
 .modal.show img{
@@ -211,6 +218,13 @@ footer{
 .modal .caption{
   margin-top:20px;
   text-align:center;
+  transition: opacity 0.3s;
+}
+
+/* Esconde legenda no zoom para focar na imagem */
+.modal.img-zoomed .caption {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* CONTROLS */
@@ -234,6 +248,7 @@ footer{
   opacity:0;
   transition:opacity .3s ease;
   z-index: 1000;
+  padding: 20px;
 }
 
 .modal .prev{ left:24px; }
@@ -260,6 +275,8 @@ footer{
   .about-photo{ width:180px; height:180px; min-width: 180px; min-height: 180px; }
   .contact-links{ flex-direction:column; }
   .contact-links span{ display:none; }
+  
+  .modal img { max-height: 70%; } /* No mobile mantém menor para caber legenda */
 }
 </style>
 </head>
@@ -287,7 +304,6 @@ footer{
 
 <section class="section" id="work">
   <h2>Beleza & Estética</h2>
-
   <div class="grid">
     <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
       <img src="projeto1.png" loading="lazy">
@@ -296,7 +312,6 @@ footer{
         <p>Conceito e direção de arte.</p>
       </div>
     </div>
-
     <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado.">
       <img src="projeto2.png" loading="lazy">
       <div class="project-info">
@@ -304,7 +319,6 @@ footer{
         <p>Comunicação visual focada em resultado.</p>
       </div>
     </div>
-
     <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível.">
       <img src="projeto3.png" loading="lazy">
       <div class="project-info">
@@ -312,7 +326,6 @@ footer{
         <p>Design informativo e acessível.</p>
       </div>
     </div>
-
     <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima.">
       <img src="projeto4.png" loading="lazy">
       <div class="project-info">
@@ -320,7 +333,6 @@ footer{
         <p>Estética e autoestima.</p>
       </div>
     </div>
-
     <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe.">
       <img src="projeto5.png" loading="lazy">
       <div class="project-info">
@@ -328,7 +340,6 @@ footer{
         <p>Foco em textura e detalhe.</p>
       </div>
     </div>
-
     <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada.">
       <img src="projeto6.png" loading="lazy">
       <div class="project-info">
@@ -336,7 +347,6 @@ footer{
         <p>Identidade visual sofisticada.</p>
       </div>
     </div>
-
     <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana.">
       <img src="projeto7.png" loading="lazy">
       <div class="project-info">
@@ -344,7 +354,6 @@ footer{
         <p>Campanha direta e humana.</p>
       </div>
     </div>
-
     <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência.">
       <img src="projeto8.png" loading="lazy">
       <div class="project-info">
@@ -357,9 +366,7 @@ footer{
 
 <section class="section" id="food">
   <h2>Food & Beverage</h2>
-
   <div class="grid">
-
     <div class="project" data-title="Sabor que se vê" data-desc="Direção de arte para marcas de alimentação.">
       <img src="food1.png" loading="lazy">
       <div class="project-info">
@@ -367,105 +374,25 @@ footer{
         <p>Direção de arte para marcas de alimentação.</p>
       </div>
     </div>
-
-    <div class="project" data-title="Textura também comunica" data-desc="Fotografia e composição visual.">
-      <img src="food2.png" loading="lazy">
-      <div class="project-info">
-        <h3>Textura também comunica</h3>
-        <p>Fotografia e composição visual.</p>
-      </div>
     </div>
-
-    <div class="project" data-title="Apetite visual" data-desc="Identidade para food brands.">
-      <img src="food3.png" loading="lazy">
-      <div class="project-info">
-        <h3>Apetite visual</h3>
-        <p>Identidade para food brands.</p>
-      </div>
-    </div>
-
-    <div class="project" data-title="Mais que sabor" data-desc="Conceito e posicionamento.">
-      <img src="food4.png" loading="lazy">
-      <div class="project-info">
-        <h3>Mais que sabor</h3>
-        <p>Conceito e posicionamento.</p>
-      </div>
-    </div>
-
-    <div class="project" data-title="Comer começa pelos olhos" data-desc="Design estratégico para alimentos.">
-      <img src="food5.png" loading="lazy">
-      <div class="project-info">
-        <h3>Comer começa pelos olhos</h3>
-        <p>Design estratégico para alimentos.</p>
-      </div>
-    </div>
-
-    <div class="project" data-title="Identidade que dá fome" data-desc="Branding para restaurantes.">
-      <img src="food6.png" loading="lazy">
-      <div class="project-info">
-        <h3>Identidade que dá fome</h3>
-        <p>Branding para restaurantes.</p>
-      </div>
-    </div>
-
-    <div class="project" data-title="Simplicidade bem temperada" data-desc="Design clean e funcional.">
-      <img src="food7.png" loading="lazy">
-      <div class="project-info">
-        <h3>Simplicidade bem temperada</h3>
-        <p>Design clean e funcional.</p>
-      </div>
-    </div>
-
-    <div class="project" data-title="Experiência à mesa" data-desc="Visual que cria desejo.">
-      <img src="food8.png" loading="lazy">
-      <div class="project-info">
-        <h3>Experiência à mesa</h3>
-        <p>Visual que cria desejo.</p>
-      </div>
-    </div>
-
-    <div class="project" data-title="Marca que alimenta" data-desc="Storytelling visual.">
-      <img src="food9.png" loading="lazy">
-      <div class="project-info">
-        <h3>Marca que alimenta</h3>
-        <p>Storytelling visual.</p>
-      </div>
-    </div>
-
-    <div class="project" data-title="Design com sabor" data-desc="Estética e posicionamento.">
-      <img src="food10.png" loading="lazy">
-      <div class="project-info">
-        <h3>Design com sabor</h3>
-        <p>Estética e posicionamento.</p>
-      </div>
-    </div>
-
-  </div>
 </section>
 
-  
 <section class="section" id="about">
   <h2>Sobre</h2>
-
   <div class="about-wrapper">
     <div class="about-photo">
       <img src="perfil.png" loading="lazy">
     </div>
-
     <div class="about">
-      Sou Designer há mais de 10 anos, com passagem por agências e
-      projetos para marcas como Itaú, Oreo, Bic e Nivea. Trabalho da ideia à
-      execução, unindo estética, estratégia e impacto visual.
+      Sou Designer há mais de 10 anos, com passagem por agências e projetos para marcas como Itaú, Oreo, Bic e Nivea. Trabalho da ideia à execução, unindo estética, estratégia e impacto visual.
       <br><br>
-      Hoje colaboro com marcas que entendem o design como experiência e sabem
-      que uma comunicação bem construída faz toda a diferença.
+      Hoje colaboro com marcas que entendem o design como experiência e sabem que uma comunicação bem construída faz toda a diferença.
     </div>
   </div>
 </section>
 
 <section class="section contact-section" id="contact">
   <h2>Fale comigo</h2>
-
   <div class="contact-links">
     <a href="https://wa.me/5511933057034" target="_blank">WhatsApp: (11) 93305-7034</a>
     <span>|</span>
@@ -514,6 +441,8 @@ function openModal(){
   modalImg.src = projects[current].querySelector("img").src;
   captionTitle.textContent = projects[current].dataset.title;
   captionDesc.textContent = projects[current].dataset.desc;
+  modalImg.classList.remove("zoomed"); // Reseta zoom ao abrir nova
+  modal.classList.remove("img-zoomed");
   modal.style.display = "flex";
   setTimeout(() => modal.classList.add("show"), 10);
   showControls();
@@ -542,11 +471,34 @@ function transition(){
   setTimeout(openModal,300);
 }
 
+function closeModal() {
+  modal.style.display="none";
+  modalImg.classList.remove("zoomed");
+  modal.classList.remove("img-zoomed");
+}
+
+// Eventos de Clique
 modal.querySelector(".next").onclick = (e)=> { e.stopPropagation(); next(); };
 modal.querySelector(".prev").onclick = (e)=> { e.stopPropagation(); prev(); };
-modal.querySelector(".close").onclick = ()=> modal.style.display="none";
+modal.querySelector(".close").onclick = closeModal;
 
-// Swipe Logic
+// Funcionalidade de Zoom no Clique da Imagem
+modalImg.onclick = (e) => {
+  e.stopPropagation();
+  modalImg.classList.toggle("zoomed");
+  modal.classList.toggle("img-zoomed");
+};
+
+// Navegação por Teclado
+document.addEventListener('keydown', (e) => {
+  if (modal.style.display === "flex") {
+    if (e.key === "ArrowRight") next();
+    if (e.key === "ArrowLeft") prev();
+    if (e.key === "Escape") closeModal();
+  }
+});
+
+// Swipe Logic (Mobile)
 modal.addEventListener('touchstart', e => {
     touchStartX = e.changedTouches[0].screenX;
 }, false);
@@ -565,4 +517,3 @@ function handleGesture() {
 
 </body>
 </html>
-
