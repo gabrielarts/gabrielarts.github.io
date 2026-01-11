@@ -113,14 +113,17 @@ header a{
   display:flex;
   gap:40px;
   max-width:820px;
+  align-items: center; /* Alinha verticalmente com o texto */
 }
 
 .about-photo{
   width:140px;
   height:140px;
+  min-width: 140px; /* Garante que não diminua e fique oval */
+  min-height: 140px;
   border-radius:50%;
   overflow:hidden;
-  flex-shrink:0;
+  flex-shrink:0; /* Impede o flexbox de achatar a foto */
 }
 
 .about-photo img{
@@ -188,7 +191,7 @@ footer{
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  touch-action: pan-y; /* Permite scroll vertical mas foca no swipe horizontal */
+  touch-action: pan-y;
 }
 
 .modal img{
@@ -254,7 +257,7 @@ footer{
   header nav{ display:none; }
   .grid{ grid-template-columns:1fr; gap:60px; }
   .about-wrapper{ flex-direction:column; align-items:center; }
-  .about-photo{ width:180px; height:180px; }
+  .about-photo{ width:180px; height:180px; min-width: 180px; min-height: 180px; }
   .contact-links{ flex-direction:column; }
   .contact-links span{ display:none; }
 }
@@ -286,7 +289,6 @@ footer{
   <h2>Beleza & Estética</h2>
 
   <div class="grid">
-
     <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
       <img src="projeto1.png" loading="lazy">
       <div class="project-info">
@@ -350,7 +352,6 @@ footer{
         <p>Autoridade e consistência.</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -409,7 +410,7 @@ const projects = [...document.querySelectorAll(".project")];
 let current = 0;
 let controlsTimeout;
 
-// Variáveis para o Swipe
+// Variáveis Swipe
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -425,7 +426,6 @@ function openModal(){
   captionTitle.textContent = projects[current].dataset.title;
   captionDesc.textContent = projects[current].dataset.desc;
   modal.style.display = "flex";
-  // Pequeno timeout para garantir que o display flex foi aplicado antes da opacidade
   setTimeout(() => modal.classList.add("show"), 10);
   showControls();
 }
@@ -453,12 +453,11 @@ function transition(){
   setTimeout(openModal,300);
 }
 
-// Eventos de Clique
 modal.querySelector(".next").onclick = (e)=> { e.stopPropagation(); next(); };
 modal.querySelector(".prev").onclick = (e)=> { e.stopPropagation(); prev(); };
 modal.querySelector(".close").onclick = ()=> modal.style.display="none";
 
-// Logica de Swipe Mobile
+// Swipe Logic
 modal.addEventListener('touchstart', e => {
     touchStartX = e.changedTouches[0].screenX;
 }, false);
@@ -469,13 +468,9 @@ modal.addEventListener('touchend', e => {
 }, false);
 
 function handleGesture() {
-    const swipeThreshold = 50; // Distância mínima para ser considerado swipe
-    if (touchEndX < touchStartX - swipeThreshold) {
-        next(); // Arrastou para a esquerda -> Próxima
-    }
-    if (touchEndX > touchStartX + swipeThreshold) {
-        prev(); // Arrastou para a direita -> Anterior
-    }
+    const swipeThreshold = 50;
+    if (touchEndX < touchStartX - swipeThreshold) next();
+    if (touchEndX > touchStartX + swipeThreshold) prev();
 }
 </script>
 
