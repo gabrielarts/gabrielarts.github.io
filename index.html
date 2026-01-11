@@ -1,305 +1,259 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gabriel Damasceno | Portfólio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Damasceno | Portfólio</title>
 
-  <style>
-    /* RESET */
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    body{
-      font-family: Arial, Helvetica, sans-serif;
-      background:#000;
-      color:#fff;
-    }
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#000;
+  color:#fff;
+}
 
-    /* HEADER */
-    header{
-      position:sticky;
-      top:0;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:16px 24px;
-      background:#000;
-      border-bottom:1px solid #fff;
-      z-index:10;
-    }
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+  background:#000;
+  border-bottom:1px solid #fff;
+  z-index:10;
+}
 
-    header a{
-      margin-left:16px;
-      color:#fff;
-      text-decoration:none;
-      font-size:14px;
-    }
+header a{
+  margin-left:16px;
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+}
 
-    /* HERO */
-    .hero{
-      padding:70px 24px 40px;
-      max-width:1100px;
-      margin:auto;
-    }
+/* HERO */
+.hero{
+  padding:70px 24px 40px;
+  max-width:1100px;
+  margin:auto;
+}
 
-    .hero h1{
-      font-size:48px;
-      margin-bottom:16px;
-    }
+.hero h1{
+  font-size:48px;
+  margin-bottom:16px;
+}
 
-    .hero p{
-      max-width:760px;
-      font-size:18px;
-      opacity:.85;
-    }
+.hero p{
+  max-width:760px;
+  font-size:18px;
+  opacity:.85;
+}
 
-    /* SECTION */
-    .section{
-      padding:50px 24px;
-      max-width:1100px;
-      margin:auto;
-    }
+/* SECTION */
+.section{
+  padding:50px 24px;
+  max-width:1100px;
+  margin:auto;
+}
 
-    .section h2{
-      margin-bottom:32px;
-      font-size:22px;
-    }
+.section h2{
+  margin-bottom:32px;
+  font-size:22px;
+}
 
-    /* GRID */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:80px;
-    }
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:80px;
+}
 
-    .project{
-      cursor:pointer;
-    }
+.project{
+  cursor:pointer;
+}
 
-    .project img{
-      width:100%;
-      aspect-ratio:4/5;
-      object-fit:cover;
-      filter:grayscale(100%);
-      transition:filter .4s ease, transform .3s ease, opacity .3s ease;
-    }
+.project img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  filter:grayscale(100%);
+  transition:filter .4s ease, transform .3s ease;
+}
 
-    .project:hover img{
-      filter:grayscale(0%);
-      transform:scale(1.03);
-      opacity:.95;
-    }
+.project:hover img{
+  filter:grayscale(0%);
+  transform:scale(1.03);
+}
 
-    /* PROJECT INFO */
-    .project-info{
-      margin-top:12px;
-    }
+/* PROJECT INFO */
+.project-info{
+  margin-top:12px;
+}
 
-    .project-info h3{
-      font-size:15px;
-      margin-bottom:4px;
-    }
+.project-info h3{
+  font-size:15px;
+  margin-bottom:4px;
+}
 
-    .project-info p{
-      font-size:13px;
-      opacity:.7;
-    }
+.project-info p{
+  font-size:13px;
+  opacity:.7;
+}
 
-    /* ABOUT */
-    .about-wrapper{
-      display:flex;
-      gap:40px;
-      max-width:820px;
-    }
+/* ABOUT */
+.about-wrapper{
+  display:flex;
+  gap:40px;
+  max-width:820px;
+}
 
-    .about-photo{
-      width:140px;
-      height:140px;
-      border-radius:50%;
-      overflow:hidden;
-      flex-shrink:0;
-    }
+.about-photo{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  overflow:hidden;
+  flex-shrink:0;
+}
 
-    .about-photo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      filter:grayscale(100%);
-      transition:transform .4s ease, filter .4s ease;
-    }
+.about-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:grayscale(100%);
+  transition:transform .4s ease, filter .4s ease;
+}
 
-    .about-photo:hover img{
-      transform:scale(1.05);
-      filter:grayscale(0%);
-    }
+.about-photo:hover img{
+  transform:scale(1.05);
+  filter:grayscale(0%);
+}
 
-    .about{
-      font-size:16px;
-      line-height:1.6;
-      opacity:.9;
-    }
+.about{
+  font-size:16px;
+  line-height:1.6;
+  opacity:.9;
+}
 
-    /* CONTACT */
-    .contact-section{
-      text-align:center;
-      max-width:700px;
-      margin:auto;
-    }
+/* CONTACT */
+.contact-section{
+  text-align:center;
+  max-width:700px;
+  margin:auto;
+}
 
-    .contact-section h2{
-      margin-bottom:20px;
-    }
+.contact-links{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  font-size:14px;
+}
 
-    .contact-links{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:12px;
-      font-size:14px;
-      white-space:nowrap;
-    }
+.contact-links a{
+  color:#fff;
+  text-decoration:none;
+  opacity:.8;
+}
 
-    .contact-links a{
-      color:#fff;
-      text-decoration:none;
-      opacity:.8;
-      transition:opacity .2s ease;
-    }
+.contact-links a:hover{
+  opacity:1;
+}
 
-    .contact-links a:hover{
-      opacity:1;
-    }
+.contact-links span{
+  opacity:.4;
+}
 
-    .contact-links span{
-      opacity:.4;
-    }
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:50px 20px;
+  font-size:13px;
+  border-top:1px solid #fff;
+}
 
-    /* FOOTER */
-    footer{
-      text-align:center;
-      padding:50px 20px;
-      font-size:13px;
-      border-top:1px solid #fff;
-    }
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:999;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
 
-    /* MODAL */
-    .modal{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:#000;
-      z-index:999;
-      justify-content:center;
-      align-items:center;
-      flex-direction:column;
-    }
+.modal img{
+  max-width:90%;
+  max-height:70%;
+  opacity:0;
+  transition:opacity .4s ease;
+}
 
-    .modal img{
-      max-width:90%;
-      max-height:70%;
-      opacity:0;
-      transition:opacity .4s ease;
-    }
+.modal.show img{
+  opacity:1;
+}
 
-    .modal.show img{
-      opacity:1;
-    }
+/* CAPTION */
+.modal .caption{
+  margin-top:20px;
+  text-align:center;
+}
 
-    /* CAPTION */
-    .modal .caption{
-      margin-top:20px;
-      text-align:center;
-      max-width:600px;
-    }
+/* CONTROLS */
+.modal .close{
+  position:absolute;
+  top:20px;
+  right:24px;
+  font-size:36px;
+  cursor:pointer;
+  opacity:.9;
+}
 
-    .modal .caption h4{
-      font-size:18px;
-      margin-bottom:8px;
-    }
+.modal .prev,
+.modal .next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:36px;
+  cursor:pointer;
+  opacity:0;
+  transition:opacity .3s ease;
+}
 
-    .modal .caption p{
-      font-size:14px;
-      opacity:.7;
-    }
+.modal .prev{ left:24px; }
+.modal .next{ right:24px; }
 
-    /* CONTROLS */
-    .modal .close,
-    .modal .prev,
-    .modal .next{
-      position:absolute;
-      font-size:36px;
-      cursor:pointer;
-      opacity:0;
-      transition:opacity .3s ease;
-    }
+.modal.show-controls .prev,
+.modal.show-controls .next{
+  opacity:.8;
+}
 
-    .modal .close{
-      top:20px;
-      right:24px;
-    }
+/* MOBILE */
+@media (max-width:768px){
+  .hero,
+  .section,
+  .about,
+  .contact-section{
+    text-align:center;
+  }
 
-    .modal .prev{
-      left:24px;
-    }
-
-    .modal .next{
-      right:24px;
-    }
-
-    .modal.show-controls .close,
-    .modal.show-controls .prev,
-    .modal.show-controls .next{
-      opacity:.8;
-    }
-
-    /* MOBILE */
-    @media (max-width:768px){
-      .hero,
-      .section,
-      .about,
-      .caption,
-      .contact-section{
-        text-align:center;
-      }
-
-      .hero h1{
-        font-size:36px;
-      }
-
-      header nav{
-        display:none;
-      }
-
-      .grid{
-        grid-template-columns:1fr;
-        gap:60px;
-      }
-
-      .about-wrapper{
-        flex-direction:column;
-        align-items:center;
-      }
-
-      .about-photo{
-        width:180px;
-        height:180px;
-      }
-
-      .contact-links{
-        flex-direction:column;
-        white-space:normal;
-        gap:8px;
-      }
-
-      .contact-links span{
-        display:none;
-      }
-    }
-  </style>
+  .hero h1{ font-size:36px; }
+  header nav{ display:none; }
+  .grid{ grid-template-columns:1fr; gap:60px; }
+  .about-wrapper{ flex-direction:column; align-items:center; }
+  .about-photo{ width:180px; height:180px; }
+  .contact-links{ flex-direction:column; }
+  .contact-links span{ display:none; }
+}
+</style>
 </head>
 
 <body>
@@ -314,9 +268,9 @@
 </header>
 
 <section class="hero">
-  <h1>Gabriel Damasceno</h1>
+  <h1>Design que organiza, comunica e posiciona.</h1>
   <p>
-    Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
+    Me chamo Gabriel, Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
     atuando entre conceito, estética e estratégia. Já trabalhei com grandes
     marcas e hoje busco projetos que valorizem clareza, consistência e
     identidade visual bem construída.
@@ -324,12 +278,12 @@
 </section>
 
 <section class="section" id="work">
-  <h2>Projetos — Beleza & Estética</h2>
+  <h2>Beleza & Estética</h2>
 
   <div class="grid">
 
     <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
-      <img src="projeto1.png" loading="lazy" alt="">
+      <img src="projeto1.png" loading="lazy">
       <div class="project-info">
         <h3>Beleza não é ser igual</h3>
         <p>Conceito e direção de arte.</p>
@@ -337,7 +291,7 @@
     </div>
 
     <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado.">
-      <img src="projeto2.png" loading="lazy" alt="">
+      <img src="projeto2.png" loading="lazy">
       <div class="project-info">
         <h3>Brilho não é filtro</h3>
         <p>Comunicação visual focada em resultado.</p>
@@ -345,7 +299,7 @@
     </div>
 
     <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível.">
-      <img src="projeto3.png" loading="lazy" alt="">
+      <img src="projeto3.png" loading="lazy">
       <div class="project-info">
         <h3>Brilho de salão em casa</h3>
         <p>Design informativo e acessível.</p>
@@ -353,7 +307,7 @@
     </div>
 
     <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima.">
-      <img src="projeto4.png" loading="lazy" alt="">
+      <img src="projeto4.png" loading="lazy">
       <div class="project-info">
         <h3>O brilho que reflete a sua força</h3>
         <p>Estética e autoestima.</p>
@@ -361,7 +315,7 @@
     </div>
 
     <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe.">
-      <img src="projeto5.png" loading="lazy" alt="">
+      <img src="projeto5.png" loading="lazy">
       <div class="project-info">
         <h3>Maquiagem que revela</h3>
         <p>Foco em textura e detalhe.</p>
@@ -369,7 +323,7 @@
     </div>
 
     <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada.">
-      <img src="projeto6.png" loading="lazy" alt="">
+      <img src="projeto6.png" loading="lazy">
       <div class="project-info">
         <h3>Bella Essence</h3>
         <p>Identidade visual sofisticada.</p>
@@ -377,7 +331,7 @@
     </div>
 
     <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana.">
-      <img src="projeto7.png" loading="lazy" alt="">
+      <img src="projeto7.png" loading="lazy">
       <div class="project-info">
         <h3>Sextou sem ficar na régua</h3>
         <p>Campanha direta e humana.</p>
@@ -385,7 +339,7 @@
     </div>
 
     <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência.">
-      <img src="projeto8.png" loading="lazy" alt="">
+      <img src="projeto8.png" loading="lazy">
       <div class="project-info">
         <h3>Presença não se improvisa</h3>
         <p>Autoridade e consistência.</p>
@@ -400,11 +354,11 @@
 
   <div class="about-wrapper">
     <div class="about-photo">
-      <img src="perfil.png" loading="lazy" alt="">
+      <img src="perfil.png" loading="lazy">
     </div>
 
     <div class="about">
-      Sou Designer há mais de 10 anos, com passagem por agências de marketing e
+      Sou Designer há mais de 10 anos, com passagem por agências e
       projetos para marcas como Itaú, Oreo, Bic e Nivea. Trabalho da ideia à
       execução, unindo estética, estratégia e impacto visual.
       <br><br>
@@ -418,11 +372,11 @@
   <h2>Fale comigo</h2>
 
   <div class="contact-links">
-    <a href="https://wa.me/5511933057034" target="_blank">WhatsApp: (11) 93305 7034</a>
+    <a href="https://wa.me/5511933057034" target="_blank">WhatsApp</a>
     <span>|</span>
-    <a href="mailto:cantocriativo.sp@gmail.com">E-mail: cantocriativo.sp@gmail.com</a>
+    <a href="mailto:cantocriativo.sp@gmail.com">E-mail</a>
     <span>|</span>
-    <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram: gabs.da96</a>
+    <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram</a>
   </div>
 </section>
 
@@ -436,7 +390,6 @@
   <span class="prev">&#10094;</span>
   <img id="modalImg">
   <span class="next">&#10095;</span>
-
   <div class="caption">
     <h4 id="captionTitle"></h4>
     <p id="captionDesc"></p>
@@ -444,64 +397,56 @@
 </div>
 
 <script>
-  const modal = document.getElementById("modal");
-  const modalImg = document.getElementById("modalImg");
-  const captionTitle = document.getElementById("captionTitle");
-  const captionDesc = document.getElementById("captionDesc");
-  const projects = [...document.querySelectorAll(".project")];
-  let current = 0;
-  let controlsTimeout;
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const captionTitle = document.getElementById("captionTitle");
+const captionDesc = document.getElementById("captionDesc");
+const projects = [...document.querySelectorAll(".project")];
+let current = 0;
+let controlsTimeout;
 
-  projects.forEach((proj,i)=>{
-    proj.addEventListener("click", ()=>{
-      current = i;
-      openModal();
-    });
-  });
+projects.forEach((proj,i)=>{
+  proj.onclick = ()=>{
+    current = i;
+    openModal();
+  };
+});
 
-  function openModal(){
-    const img = projects[current].querySelector("img");
-    modalImg.src = img.src;
-    captionTitle.textContent = projects[current].dataset.title;
-    captionDesc.textContent = projects[current].dataset.desc;
-    modal.style.display = "flex";
-    modal.classList.add("show");
-    showControls();
-  }
+function openModal(){
+  modalImg.src = projects[current].querySelector("img").src;
+  captionTitle.textContent = projects[current].dataset.title;
+  captionDesc.textContent = projects[current].dataset.desc;
+  modal.style.display = "flex";
+  modal.classList.add("show");
+  showControls();
+}
 
-  function showControls(){
-    modal.classList.add("show-controls");
-    clearTimeout(controlsTimeout);
-    controlsTimeout = setTimeout(()=>{
-      modal.classList.remove("show-controls");
-    },1500);
-  }
+function showControls(){
+  modal.classList.add("show-controls");
+  clearTimeout(controlsTimeout);
+  controlsTimeout = setTimeout(()=>{
+    modal.classList.remove("show-controls");
+  },1500);
+}
 
-  function next(){
-    current = (current + 1) % projects.length;
-    transitionImage();
-  }
+function next(){
+  current = (current + 1) % projects.length;
+  transition();
+}
 
-  function prev(){
-    current = (current - 1 + projects.length) % projects.length;
-    transitionImage();
-  }
+function prev(){
+  current = (current - 1 + projects.length) % projects.length;
+  transition();
+}
 
-  function transitionImage(){
-    modal.classList.remove("show");
-    setTimeout(openModal,300);
-  }
+function transition(){
+  modal.classList.remove("show");
+  setTimeout(openModal,300);
+}
 
-  modal.querySelector(".next").onclick = next;
-  modal.querySelector(".prev").onclick = prev;
-  modal.querySelector(".close").onclick = ()=> modal.style.display="none";
-
-  document.addEventListener("keydown", e=>{
-    if(modal.style.display !== "flex") return;
-    if(e.key==="ArrowRight") next();
-    if(e.key==="ArrowLeft") prev();
-    if(e.key==="Escape") modal.style.display="none";
-  });
+modal.querySelector(".next").onclick = next;
+modal.querySelector(".prev").onclick = prev;
+modal.querySelector(".close").onclick = ()=> modal.style.display="none";
 </script>
 
 </body>
