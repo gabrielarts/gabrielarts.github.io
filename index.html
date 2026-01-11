@@ -250,8 +250,18 @@ footer{
   opacity:.8;
 }
 
-.modal .prev,
+/* ⬅️ ➡️ POSICIONAMENTO CORRETO DAS SETAS */
+.modal .prev{
+  left:24px;
+  top:50%;
+  transform:translateY(-50%);
+  opacity:0;
+}
+
 .modal .next{
+  right:24px;
+  top:50%;
+  transform:translateY(-50%);
   opacity:0;
 }
 
@@ -320,7 +330,7 @@ footer{
 <section class="hero">
   <h1>Design que constrói percepção.</h1>
   <p>
-    Me chamo Gabriel Damasceno, sou Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
+    Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
     atuando entre conceito, estética e estratégia. Já trabalhei com grandes
     marcas e hoje busco projetos que valorizem clareza, consistência e
     identidade visual bem construída.
@@ -328,7 +338,7 @@ footer{
 </section>
 
 <section class="section" id="work">
-  <h2>Beleza & Estética</h2>
+  <h2>Projetos — Beleza & Estética</h2>
 
   <div class="grid">
 
@@ -404,25 +414,6 @@ footer{
       </div>
     </div>
 
-  </div>
-</section>
-
-<section class="section" id="about">
-  <h2>Sobre</h2>
-
-  <div class="about-wrapper">
-    <div class="about-photo">
-      <img src="perfil.png" loading="lazy" alt="">
-    </div>
-
-    <div class="about">
-      Sou Designer há mais de 10 anos, com passagem por agências de marketing e
-      projetos para marcas como Itaú, Oreo, Bic e Nivea. Trabalho da ideia à
-      execução, unindo estética, estratégia e impacto visual.
-      <br><br>
-      Hoje colaboro com marcas que entendem o design como experiência e sabem
-      que uma comunicação bem construída faz toda a diferença.
-    </div>
   </div>
 </section>
 
