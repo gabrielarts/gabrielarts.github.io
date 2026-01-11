@@ -6,10 +6,15 @@
 <title>Gabriel Damasceno | Portfólio</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body{
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background:#000;
   color:#fff;
 }
@@ -22,8 +27,8 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:16px 24px;
-  border-bottom:1px solid #fff;
   background:#000;
+  border-bottom:1px solid #fff;
   z-index:10;
 }
 
@@ -80,7 +85,7 @@ header a{
   aspect-ratio:4/5;
   object-fit:cover;
   filter:grayscale(100%);
-  transition:.4s;
+  transition:filter .4s ease, transform .3s ease;
 }
 
 .project:hover img{
@@ -88,12 +93,14 @@ header a{
   transform:scale(1.03);
 }
 
+/* PROJECT INFO */
 .project-info{
   margin-top:12px;
 }
 
 .project-info h3{
   font-size:15px;
+  margin-bottom:4px;
 }
 
 .project-info p{
@@ -113,6 +120,7 @@ header a{
   height:140px;
   border-radius:50%;
   overflow:hidden;
+  flex-shrink:0;
 }
 
 .about-photo img{
@@ -120,6 +128,12 @@ header a{
   height:100%;
   object-fit:cover;
   filter:grayscale(100%);
+  transition:transform .4s ease, filter .4s ease;
+}
+
+.about-photo:hover img{
+  transform:scale(1.05);
+  filter:grayscale(0%);
 }
 
 .about{
@@ -131,6 +145,8 @@ header a{
 /* CONTACT */
 .contact-section{
   text-align:center;
+  max-width:700px;
+  margin:auto;
 }
 
 .contact-links{
@@ -146,8 +162,13 @@ header a{
   opacity:.8;
 }
 
-.contact-links a:hover{opacity:1;}
-.contact-links span{opacity:.4;}
+.contact-links a:hover{
+  opacity:1;
+}
+
+.contact-links span{
+  opacity:.4;
+}
 
 /* FOOTER */
 footer{
@@ -167,28 +188,37 @@ footer{
   justify-content:center;
   align-items:center;
   flex-direction:column;
+  touch-action: pan-y; /* Permite scroll vertical mas foca no swipe horizontal */
 }
 
 .modal img{
   max-width:90%;
   max-height:70%;
   opacity:0;
-  transition:.4s;
+  transition:opacity .4s ease;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-.modal.show img{opacity:1;}
+.modal.show img{
+  opacity:1;
+}
 
+/* CAPTION */
 .modal .caption{
   margin-top:20px;
   text-align:center;
 }
 
+/* CONTROLS */
 .modal .close{
   position:absolute;
   top:20px;
   right:24px;
   font-size:36px;
   cursor:pointer;
+  opacity:.9;
+  z-index: 1001;
 }
 
 .modal .prev,
@@ -199,24 +229,34 @@ footer{
   font-size:36px;
   cursor:pointer;
   opacity:0;
-  transition:.3s;
+  transition:opacity .3s ease;
+  z-index: 1000;
 }
 
-.modal .prev{left:24px;}
-.modal .next{right:24px;}
+.modal .prev{ left:24px; }
+.modal .next{ right:24px; }
 
 .modal.show-controls .prev,
-.modal.show-controls .next{opacity:.8;}
+.modal.show-controls .next{
+  opacity:.8;
+}
 
 /* MOBILE */
-@media(max-width:768px){
-  .hero,.section,.about,.contact-section{text-align:center;}
-  .hero h1{font-size:36px;}
-  header nav{display:none;}
-  .grid{grid-template-columns:1fr;gap:60px;}
-  .about-wrapper{flex-direction:column;align-items:center;}
-  .contact-links{flex-direction:column;}
-  .contact-links span{display:none;}
+@media (max-width:768px){
+  .hero,
+  .section,
+  .about,
+  .contact-section{
+    text-align:center;
+  }
+
+  .hero h1{ font-size:36px; }
+  header nav{ display:none; }
+  .grid{ grid-template-columns:1fr; gap:60px; }
+  .about-wrapper{ flex-direction:column; align-items:center; }
+  .about-photo{ width:180px; height:180px; }
+  .contact-links{ flex-direction:column; }
+  .contact-links span{ display:none; }
 }
 </style>
 </head>
@@ -236,8 +276,9 @@ footer{
   <h1>Design que organiza, comunica e posiciona.</h1>
   <p>
     Me chamo Gabriel, Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
-    atuando entre conceito, estética e estratégia. Já trabalhei com grandes marcas e hoje
-    busco projetos que valorizem clareza, consistência e identidade visual bem construída.
+    atuando entre conceito, estética e estratégia. Já trabalhei com grandes
+    marcas e hoje busco projetos que valorizem clareza, consistência e
+    identidade visual bem construída.
   </p>
 </section>
 
@@ -245,33 +286,96 @@ footer{
   <h2>Beleza & Estética</h2>
 
   <div class="grid">
-    <!-- 8 PROJETOS -->
-    <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte."><img src="projeto1.png"><div class="project-info"><h3>Beleza não é ser igual</h3><p>Conceito e direção de arte.</p></div></div>
-    <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado."><img src="projeto2.png"><div class="project-info"><h3>Brilho não é filtro</h3><p>Comunicação visual focada em resultado.</p></div></div>
-    <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível."><img src="projeto3.png"><div class="project-info"><h3>Brilho de salão em casa</h3><p>Design informativo e acessível.</p></div></div>
-    <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima."><img src="projeto4.png"><div class="project-info"><h3>O brilho que reflete a sua força</h3><p>Estética e autoestima.</p></div></div>
-    <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe."><img src="projeto5.png"><div class="project-info"><h3>Maquiagem que revela</h3><p>Foco em textura e detalhe.</p></div></div>
-    <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada."><img src="projeto6.png"><div class="project-info"><h3>Bella Essence</h3><p>Identidade visual sofisticada.</p></div></div>
-    <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana."><img src="projeto7.png"><div class="project-info"><h3>Sextou sem ficar na régua</h3><p>Campanha direta e humana.</p></div></div>
-    <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência."><img src="projeto8.png"><div class="project-info"><h3>Presença não se improvisa</h3><p>Autoridade e consistência.</p></div></div>
+
+    <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
+      <img src="projeto1.png" loading="lazy">
+      <div class="project-info">
+        <h3>Beleza não é ser igual</h3>
+        <p>Conceito e direção de arte.</p>
+      </div>
+    </div>
+
+    <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado.">
+      <img src="projeto2.png" loading="lazy">
+      <div class="project-info">
+        <h3>Brilho não é filtro</h3>
+        <p>Comunicação visual focada em resultado.</p>
+      </div>
+    </div>
+
+    <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível.">
+      <img src="projeto3.png" loading="lazy">
+      <div class="project-info">
+        <h3>Brilho de salão em casa</h3>
+        <p>Design informativo e acessível.</p>
+      </div>
+    </div>
+
+    <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima.">
+      <img src="projeto4.png" loading="lazy">
+      <div class="project-info">
+        <h3>O brilho que reflete a sua força</h3>
+        <p>Estética e autoestima.</p>
+      </div>
+    </div>
+
+    <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe.">
+      <img src="projeto5.png" loading="lazy">
+      <div class="project-info">
+        <h3>Maquiagem que revela</h3>
+        <p>Foco em textura e detalhe.</p>
+      </div>
+    </div>
+
+    <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada.">
+      <img src="projeto6.png" loading="lazy">
+      <div class="project-info">
+        <h3>Bella Essence</h3>
+        <p>Identidade visual sofisticada.</p>
+      </div>
+    </div>
+
+    <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana.">
+      <img src="projeto7.png" loading="lazy">
+      <div class="project-info">
+        <h3>Sextou sem ficar na régua</h3>
+        <p>Campanha direta e humana.</p>
+      </div>
+    </div>
+
+    <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência.">
+      <img src="projeto8.png" loading="lazy">
+      <div class="project-info">
+        <h3>Presença não se improvisa</h3>
+        <p>Autoridade e consistência.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section class="section" id="about">
   <h2>Sobre</h2>
+
   <div class="about-wrapper">
-    <div class="about-photo"><img src="perfil.png"></div>
+    <div class="about-photo">
+      <img src="perfil.png" loading="lazy">
+    </div>
+
     <div class="about">
-      Sou Designer há mais de 10 anos, com passagem por agências e projetos para marcas como Itaú,
-      Oreo, Bic e Nivea. Trabalho da ideia à execução, unindo estética, estratégia e impacto visual.
+      Sou Designer há mais de 10 anos, com passagem por agências e
+      projetos para marcas como Itaú, Oreo, Bic e Nivea. Trabalho da ideia à
+      execução, unindo estética, estratégia e impacto visual.
       <br><br>
-      Hoje colaboro com marcas que entendem o design como experiência.
+      Hoje colaboro com marcas que entendem o design como experiência e sabem
+      que uma comunicação bem construída faz toda a diferença.
     </div>
   </div>
 </section>
 
 <section class="section contact-section" id="contact">
   <h2>Fale comigo</h2>
+
   <div class="contact-links">
     <a href="https://wa.me/5511933057034" target="_blank">WhatsApp: (11) 93305-7034</a>
     <span>|</span>
@@ -281,9 +385,10 @@ footer{
   </div>
 </section>
 
-<footer>© 2026 — Gabriel Damasceno</footer>
+<footer>
+  © 2026 — Gabriel Damasceno
+</footer>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
   <span class="close">&times;</span>
   <span class="prev">&#10094;</span>
@@ -296,47 +401,82 @@ footer{
 </div>
 
 <script>
-const modal=document.getElementById("modal");
-const modalImg=document.getElementById("modalImg");
-const captionTitle=document.getElementById("captionTitle");
-const captionDesc=document.getElementById("captionDesc");
-const projects=[...document.querySelectorAll(".project")];
-let current=0,controlsTimeout;
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const captionTitle = document.getElementById("captionTitle");
+const captionDesc = document.getElementById("captionDesc");
+const projects = [...document.querySelectorAll(".project")];
+let current = 0;
+let controlsTimeout;
 
-projects.forEach((p,i)=>p.onclick=()=>{current=i;openModal();});
+// Variáveis para o Swipe
+let touchStartX = 0;
+let touchEndX = 0;
+
+projects.forEach((proj,i)=>{
+  proj.onclick = ()=>{
+    current = i;
+    openModal();
+  };
+});
 
 function openModal(){
-  modalImg.src=projects[current].querySelector("img").src;
-  captionTitle.textContent=projects[current].dataset.title;
-  captionDesc.textContent=projects[current].dataset.desc;
-  modal.style.display="flex";
-  modal.classList.add("show");
+  modalImg.src = projects[current].querySelector("img").src;
+  captionTitle.textContent = projects[current].dataset.title;
+  captionDesc.textContent = projects[current].dataset.desc;
+  modal.style.display = "flex";
+  // Pequeno timeout para garantir que o display flex foi aplicado antes da opacidade
+  setTimeout(() => modal.classList.add("show"), 10);
   showControls();
 }
 
 function showControls(){
   modal.classList.add("show-controls");
   clearTimeout(controlsTimeout);
-  controlsTimeout=setTimeout(()=>modal.classList.remove("show-controls"),1500);
+  controlsTimeout = setTimeout(()=>{
+    modal.classList.remove("show-controls");
+  },1500);
 }
 
-function next(){current=(current+1)%projects.length;transition();}
-function prev(){current=(current-1+projects.length)%projects.length;transition();}
-function transition(){modal.classList.remove("show");setTimeout(openModal,300);}
+function next(){
+  current = (current + 1) % projects.length;
+  transition();
+}
 
-modal.querySelector(".next").onclick=next;
-modal.querySelector(".prev").onclick=prev;
-modal.querySelector(".close").onclick=()=>modal.style.display="none";
+function prev(){
+  current = (current - 1 + projects.length) % projects.length;
+  transition();
+}
 
-/* SWIPE MOBILE */
-let startX=0,endX=0;
+function transition(){
+  modal.classList.remove("show");
+  setTimeout(openModal,300);
+}
 
-modalImg.addEventListener("touchstart",e=>startX=e.changedTouches[0].screenX,{passive:true});
-modalImg.addEventListener("touchend",e=>{
-  endX=e.changedTouches[0].screenX;
-  if(Math.abs(endX-startX)<50)return;
-  endX<startX?next():prev();
-},{passive:true});
+// Eventos de Clique
+modal.querySelector(".next").onclick = (e)=> { e.stopPropagation(); next(); };
+modal.querySelector(".prev").onclick = (e)=> { e.stopPropagation(); prev(); };
+modal.querySelector(".close").onclick = ()=> modal.style.display="none";
+
+// Logica de Swipe Mobile
+modal.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+modal.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleGesture();
+}, false);
+
+function handleGesture() {
+    const swipeThreshold = 50; // Distância mínima para ser considerado swipe
+    if (touchEndX < touchStartX - swipeThreshold) {
+        next(); // Arrastou para a esquerda -> Próxima
+    }
+    if (touchEndX > touchStartX + swipeThreshold) {
+        prev(); // Arrastou para a direita -> Anterior
+    }
+}
 </script>
 
 </body>
