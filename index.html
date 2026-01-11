@@ -99,6 +99,14 @@ header a{
   margin-top:12px;
 }
 
+.project-info .tag{
+  display:block;
+  font-size:10px;
+  letter-spacing:.12em;
+  opacity:.4;
+  margin-bottom:4px;
+}
+
 .project-info h3{
   font-size:15px;
   margin-bottom:4px;
@@ -233,24 +241,20 @@ footer{
   position:absolute;
   font-size:36px;
   cursor:pointer;
-  opacity:0;
   transition:opacity .3s ease;
 }
 
 .modal .close{
   top:20px;
   right:24px;
+  opacity:.8;
 }
 
-.modal .prev{
-  left:24px;
-}
-
+.modal .prev,
 .modal .next{
-  right:24px;
+  opacity:0;
 }
 
-.modal.show-controls .close,
 .modal.show-controls .prev,
 .modal.show-controls .next{
   opacity:.8;
@@ -314,9 +318,9 @@ footer{
 </header>
 
 <section class="hero">
-  <h1>Gabriel Damasceno</h1>
+  <h1>Design que constrói percepção.</h1>
   <p>
-    Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
+    Me chamo Gabriel Damasceno, sou Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência,
     atuando entre conceito, estética e estratégia. Já trabalhei com grandes
     marcas e hoje busco projetos que valorizem clareza, consistência e
     identidade visual bem construída.
@@ -324,13 +328,14 @@ footer{
 </section>
 
 <section class="section" id="work">
-  <h2>Projetos — Beleza & Estética</h2>
+  <h2>Beleza & Estética</h2>
 
   <div class="grid">
 
     <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
       <img src="projeto1.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>Beleza não é ser igual</h3>
         <p>Conceito e direção de arte.</p>
       </div>
@@ -339,6 +344,7 @@ footer{
     <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado.">
       <img src="projeto2.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>Brilho não é filtro</h3>
         <p>Comunicação visual focada em resultado.</p>
       </div>
@@ -347,6 +353,7 @@ footer{
     <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível.">
       <img src="projeto3.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>Brilho de salão em casa</h3>
         <p>Design informativo e acessível.</p>
       </div>
@@ -355,6 +362,7 @@ footer{
     <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima.">
       <img src="projeto4.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>O brilho que reflete a sua força</h3>
         <p>Estética e autoestima.</p>
       </div>
@@ -363,6 +371,7 @@ footer{
     <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe.">
       <img src="projeto5.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>Maquiagem que revela</h3>
         <p>Foco em textura e detalhe.</p>
       </div>
@@ -371,6 +380,7 @@ footer{
     <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada.">
       <img src="projeto6.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>Bella Essence</h3>
         <p>Identidade visual sofisticada.</p>
       </div>
@@ -379,6 +389,7 @@ footer{
     <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana.">
       <img src="projeto7.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>Sextou sem ficar na régua</h3>
         <p>Campanha direta e humana.</p>
       </div>
@@ -387,6 +398,7 @@ footer{
     <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência.">
       <img src="projeto8.png" loading="lazy" alt="">
       <div class="project-info">
+        <span class="tag">PROJETO</span>
         <h3>Presença não se improvisa</h3>
         <p>Autoridade e consistência.</p>
       </div>
@@ -453,6 +465,9 @@ const projects = [...document.querySelectorAll(".project")];
 let current = 0;
 let controlsTimeout;
 
+let touchStartX = 0;
+let touchEndX = 0;
+
 projects.forEach((proj,i)=>{
   proj.addEventListener("click", ()=>{
     current = i;
@@ -497,6 +512,18 @@ function transitionImage(){
 modal.querySelector(".next").onclick = next;
 modal.querySelector(".prev").onclick = prev;
 modal.querySelector(".close").onclick = ()=> modal.style.display="none";
+
+modal.addEventListener("touchstart", e=>{
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+modal.addEventListener("touchend", e=>{
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchStartX - touchEndX;
+  if(Math.abs(diff) > 50){
+    diff > 0 ? next() : prev();
+  }
+});
 
 document.addEventListener("keydown", e=>{
   if(modal.style.display !== "flex") return;
