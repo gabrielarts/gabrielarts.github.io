@@ -41,6 +41,8 @@ header a{ margin-left:16px; color:#fff; text-decoration:none; font-size:14px; }
 .project img, .project video{
   width:100%; aspect-ratio:4/5; object-fit:cover;
   filter:grayscale(100%); transition:all .4s ease;
+  will-change: transform, filter; /* Otimização contra flickadas */
+  backface-visibility: hidden;
 }
 .project:hover img, .project:hover video{ filter:grayscale(0%); transform:scale(1.03); }
 .project-info{ margin-top:12px; }
@@ -79,13 +81,16 @@ footer{ text-align:center; padding:50px 20px; font-size:13px; border-top:1px sol
 }
 .modal-container:active { cursor: grabbing; }
 
-.modal img{
+/* Estilo unificado para mídia no modal */
+.modal-media {
   max-width:90%; max-height:100%; opacity:0;
   transition: opacity .4s ease, transform 0.1s ease;
   user-select: none; pointer-events: all;
+  will-change: transform;
+  backface-visibility: hidden;
 }
-.modal.show img{ opacity:1; }
-.modal img.zoomed { transform: scale(2); cursor: move; }
+.modal.show .modal-media { opacity:1; }
+.modal-media.zoomed { transform: scale(2); cursor: move; }
 
 .modal .caption{ padding: 20px; text-align:center; background: #000; width: 100%; }
 .modal.img-zoomed .caption, .modal.img-zoomed .prev, .modal.img-zoomed .next { opacity: 0; pointer-events: none; }
@@ -262,8 +267,7 @@ footer{ text-align:center; padding:50px 20px; font-size:13px; border-top:1px sol
   <span class="close">&times;</span>
   <span class="prev">&#10094;</span>
   <div class="modal-container" id="modalContainer">
-    <img id="modalImg">
-  </div>
+    </div>
   <span class="next">&#10095;</span>
   <div class="caption">
     <h4 id="captionTitle"></h4>
@@ -273,7 +277,6 @@ footer{ text-align:center; padding:50px 20px; font-size:13px; border-top:1px sol
 
 <script>
 const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modalImg");
 const modalContainer = document.getElementById("modalContainer");
 const captionTitle = document.getElementById("captionTitle");
 const captionDesc = document.getElementById("captionDesc");
@@ -284,20 +287,51 @@ let isZoomed = false;
 let startX, startY, x = 0, y = 0;
 let touchStartX = 0;
 let touchEndX = 0;
+let modalMedia; // Variável global para referenciar o elemento atual no modal
 
 projects.forEach((proj, i) => {
   proj.onclick = () => { current = i; openModal(); };
 });
 
 function openModal() {
-  // Ajuste para pegar a imagem ou o vídeo (se for o caso, usa o src do primeiro elemento de mídia)
-  const media = projects[current].querySelector("img") || projects[current].querySelector("video");
-  modalImg.src = media.src;
+  const sourceMedia = projects[current].querySelector("img") || projects[current].querySelector("video");
+  const isVideo = sourceMedia.tagName.toLowerCase() === "video";
+
+  modalContainer.innerHTML = ""; // Limpa o modal
+
+  if (isVideo) {
+    modalMedia = document.createElement("video");
+    modalMedia.src = sourceMedia.src;
+    modalMedia.autoplay = true;
+    modalMedia.loop = true;
+    modalMedia.controls = true;
+    modalMedia.muted = false;
+  } else {
+    modalMedia = document.createElement("img");
+    modalMedia.src = sourceMedia.src;
+  }
+
+  modalMedia.className = "modal-media";
+  modalContainer.appendChild(modalMedia);
   
   captionTitle.textContent = projects[current].dataset.title;
   captionDesc.textContent = projects[current].dataset.desc;
+  
   resetZoom();
   modal.style.display = "flex";
+  
+  // Setup dos cliques para zoom (apenas para imagens)
+  if (!isVideo) {
+    modalMedia.onclick = (e) => {
+      e.stopPropagation();
+      isZoomed = !isZoomed;
+      modalMedia.classList.toggle("zoomed", isZoomed);
+      modal.classList.toggle("img-zoomed", isZoomed);
+      if (!isZoomed) resetZoom();
+      else modalMedia.style.transform = `translate(0px, 0px) scale(2)`;
+    };
+  }
+
   setTimeout(() => modal.classList.add("show"), 10);
   showControls();
 }
@@ -305,22 +339,14 @@ function openModal() {
 function resetZoom() {
   isZoomed = false;
   x = 0; y = 0;
-  modalImg.classList.remove("zoomed");
+  if(modalMedia) {
+    modalMedia.classList.remove("zoomed");
+    modalMedia.style.transform = `translate(0px, 0px) scale(1)`;
+  }
   modal.classList.remove("img-zoomed");
-  modalImg.style.transform = `translate(0px, 0px) scale(1)`;
 }
 
-modalImg.ondragstart = (e) => e.preventDefault();
-
-modalImg.onclick = (e) => {
-  e.stopPropagation();
-  isZoomed = !isZoomed;
-  modalImg.classList.toggle("zoomed", isZoomed);
-  modal.classList.toggle("img-zoomed", isZoomed);
-  if (!isZoomed) resetZoom();
-  else modalImg.style.transform = `translate(0px, 0px) scale(2)`;
-};
-
+// Lógica de arrastar para zoom
 modalContainer.onmousedown = (e) => {
   if (!isZoomed) return;
   e.preventDefault(); 
@@ -329,11 +355,12 @@ modalContainer.onmousedown = (e) => {
   modalContainer.onmousemove = (e) => {
     x = e.clientX - startX;
     y = e.clientY - startY;
-    modalImg.style.transform = `translate(${x}px, ${y}px) scale(2)`;
+    modalMedia.style.transform = `translate(${x}px, ${y}px) scale(2)`;
   };
 };
 window.onmouseup = () => modalContainer.onmousemove = null;
 
+// Touch events
 modalContainer.ontouchstart = (e) => {
   touchStartX = e.touches[0].clientX;
   if (!isZoomed) return;
@@ -346,7 +373,7 @@ modalContainer.ontouchmove = (e) => {
   if (!isZoomed) return;
   x = e.touches[0].clientX - startX;
   y = e.touches[0].clientY - startY;
-  modalImg.style.transform = `translate(${x}px, ${y}px) scale(2)`;
+  modalMedia.style.transform = `translate(${x}px, ${y}px) scale(2)`;
 };
 
 modalContainer.ontouchend = () => {
@@ -375,13 +402,17 @@ function showControls() {
 
 modal.querySelector(".next").onclick = (e) => { e.stopPropagation(); next(); };
 modal.querySelector(".prev").onclick = (e) => { e.stopPropagation(); prev(); };
-modal.querySelector(".close").onclick = () => { modal.style.display = "none"; resetZoom(); };
+modal.querySelector(".close").onclick = () => { 
+  modal.style.display = "none"; 
+  modalContainer.innerHTML = ""; // Para o vídeo imediatamente
+  resetZoom(); 
+};
 
 document.addEventListener('keydown', (e) => {
   if (modal.style.display === "flex") {
     if (e.key === "ArrowRight" && !isZoomed) next();
     if (e.key === "ArrowLeft" && !isZoomed) prev();
-    if (e.key === "Escape") { modal.style.display = "none"; resetZoom(); }
+    if (e.key === "Escape") { modal.querySelector(".close").onclick(); }
   }
 });
 </script>
