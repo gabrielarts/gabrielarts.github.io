@@ -37,17 +37,18 @@ header a{ margin-left:16px; color:#fff; text-decoration:none; font-size:14px; }
 /* GRID */
 .grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:80px; }
 .project{ cursor:pointer; }
-.project img{
+/* Ajuste para aceitar img e video no grid */
+.project img, .project video{
   width:100%; aspect-ratio:4/5; object-fit:cover;
   filter:grayscale(100%); transition:all .4s ease;
 }
-.project:hover img{ filter:grayscale(0%); transform:scale(1.03); }
+.project:hover img, .project:hover video{ filter:grayscale(0%); transform:scale(1.03); }
 .project-info{ margin-top:12px; }
 .project-info h3{ font-size:15px; margin-bottom:4px; }
 .project-info p{ font-size:13px; opacity:.7; }
 
 /* ABOUT - CENTRALIZADO NO DESKTOP */
-#about { text-align: center; } /* Centraliza o título "Sobre" */
+#about { text-align: center; } 
 .about-wrapper{ 
   display:flex; 
   flex-direction: column; 
@@ -225,7 +226,7 @@ footer{ text-align:center; padding:50px 20px; font-size:13px; border-top:1px sol
       <div class="project-info"><h3>Food 06</h3><p>Art Direction</p></div>
     </div>
     <div class="project" data-title="Food Project 07" data-desc="Descrição do projeto food 07.">
-      <img src="food7.mp4">
+      <video src="food7.mp4" autoplay loop muted playsinline></video>
       <div class="project-info"><h3>Food 07</h3><p>Packaging</p></div>
     </div>
     <div class="project" data-title="Food Project 08" data-desc="Descrição do projeto food 08.">
@@ -271,7 +272,6 @@ footer{ text-align:center; padding:50px 20px; font-size:13px; border-top:1px sol
 </div>
 
 <script>
-// Mantido intacto conforme solicitado.
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modalImg");
 const modalContainer = document.getElementById("modalContainer");
@@ -290,7 +290,10 @@ projects.forEach((proj, i) => {
 });
 
 function openModal() {
-  modalImg.src = projects[current].querySelector("img").src;
+  // Ajuste para pegar a imagem ou o vídeo (se for o caso, usa o src do primeiro elemento de mídia)
+  const media = projects[current].querySelector("img") || projects[current].querySelector("video");
+  modalImg.src = media.src;
+  
   captionTitle.textContent = projects[current].dataset.title;
   captionDesc.textContent = projects[current].dataset.desc;
   resetZoom();
@@ -385,4 +388,3 @@ document.addEventListener('keydown', (e) => {
 
 </body>
 </html>
-
