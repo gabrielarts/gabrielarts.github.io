@@ -1,422 +1,485 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gabriel Damasceno | Portfólio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Designer | Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #999999;
+            --accent: #333333;
+            --modal-bg: #0f0f0f;
+        }
 
-<style>
-/* RESET & BASE */
-*{ margin:0; padding:0; box-sizing:border-box; }
-body{ font-family: Arial, Helvetica, sans-serif; background:#000; color:#fff; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
 
-/* HEADER */
-header{
-  position:sticky; top:0; display:flex; justify-content:space-between; align-items:center;
-  padding:16px 24px; background:#000; border-bottom:1px solid #fff; z-index:10;
-}
-header a{ margin-left:16px; color:#fff; text-decoration:none; font-size:14px; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
 
-/* LAYOUT SECTIONS */
-.hero, .section{ max-width:1100px; margin:auto; padding:50px 24px; }
-.hero{ padding-top:70px; display: flex; align-items: center; gap: 40px; } 
-.hero-content { flex: 1; }
-.hero h1{ font-size:48px; margin-bottom:16px; }
-.hero p{ max-width:760px; font-size:18px; opacity:.85; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
 
-/* FOTO NO HERO */
-.hero-photo {
-  width: 180px; height: 180px; min-width: 180px; 
-  border-radius: 50%; overflow: hidden; flex-shrink: 0;
-}
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: .4s; }
-.hero-photo:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        /* Container Centralizado */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.section h2{ margin-bottom:32px; font-size:22px; text-transform: uppercase; letter-spacing: 1px; }
+        /* HEADER */
+        header {
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* GRID */
-.grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:80px; }
-.project{ cursor:pointer; }
-/* Ajuste para aceitar img e video no grid */
-.project img, .project video{
-  width:100%; aspect-ratio:4/5; object-fit:cover;
-  filter:grayscale(100%); transition:all .4s ease;
-  will-change: transform, filter; /* Otimização contra flickadas */
-  backface-visibility: hidden;
-}
-.project:hover img, .project:hover video{ filter:grayscale(0%); transform:scale(1.03); }
-.project-info{ margin-top:12px; }
-.project-info h3{ font-size:15px; margin-bottom:4px; }
-.project-info p{ font-size:13px; opacity:.7; }
+        .logo { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.5px; }
+        .socials { display: flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); }
+        .socials a:hover { color: var(--text-primary); }
 
-/* ABOUT - CENTRALIZADO NO DESKTOP */
-#about { text-align: center; } 
-.about-wrapper{ 
-  display:flex; 
-  flex-direction: column; 
-  gap:20px; 
-  max-width:820px; 
-  margin: 0 auto; 
-  text-align: center; 
-}
-.about{ font-size:16px; line-height:1.6; opacity:.9; }
+        /* HERO SECTION */
+        .hero {
+            padding: 80px 0 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
 
-/* CONTACT & FOOTER */
-.contact-section{ text-align:center; }
-.contact-links{ display:flex; justify-content:center; gap:12px; font-size:14px; margin-top: 20px; }
-.contact-links a{ color:#fff; text-decoration:none; opacity:.8; }
-.contact-links a:hover{ opacity:1; }
-footer{ text-align:center; padding:50px 20px; font-size:13px; border-top:1px solid #fff; margin-top: 40px; }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
 
-/* MODAL & ZOOM PAN */
-.modal{
-  display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95);
-  z-index:999; justify-content:center; align-items:center; flex-direction:column;
-  overflow: hidden; touch-action: none;
-}
-.modal-container {
-  position: relative; width: 100%; height: 85%;
-  display: flex; justify-content: center; align-items: center;
-  overflow: hidden; cursor: grab;
-}
-.modal-container:active { cursor: grabbing; }
+        .hero-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
 
-/* Estilo unificado para mídia no modal */
-.modal-media {
-  max-width:90%; max-height:100%; opacity:0;
-  transition: opacity .4s ease, transform 0.1s ease;
-  user-select: none; pointer-events: all;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-.modal.show .modal-media { opacity:1; }
-.modal-media.zoomed { transform: scale(2); cursor: move; }
+        .cta-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
 
-.modal .caption{ padding: 20px; text-align:center; background: #000; width: 100%; }
-.modal.img-zoomed .caption, .modal.img-zoomed .prev, .modal.img-zoomed .next { opacity: 0; pointer-events: none; }
+        .btn {
+            padding: 12px 30px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
 
-/* CONTROLS */
-.modal .close{ position:absolute; top:20px; right:24px; font-size:36px; cursor:pointer; z-index: 1001; }
-.modal .prev, .modal .next{
-  position:absolute; top:50%; transform:translateY(-50%);
-  font-size:36px; cursor:pointer; opacity:0; transition:.3s; z-index: 1000; padding: 20px;
-}
-.modal .prev{ left:24px; } .modal .next{ right:24px; }
-.modal.show-controls .prev, .modal.show-controls .next{ opacity:.8; }
+        .btn:hover { background: var(--text-primary); color: var(--bg-color); }
+        .btn-outline { border-color: var(--text-secondary); }
 
-/* MOBILE - TEXTO CENTRALIZADO */
-@media (max-width:768px){
-  body { text-align: center; } 
-  .hero { flex-direction: column; align-items: center; padding-top: 40px; }
-  .hero p { margin: 0 auto; } 
-  .hero-photo { width: 140px; height: 140px; min-width: 140px; }
-  .hero h1{ font-size:36px; }
-  .grid{ grid-template-columns:1fr; gap:60px; }
-  .about-wrapper{ flex-direction:column; text-align:center; }
-  .contact-links{ flex-direction:column; }
-  .contact-links span{ display:none; }
-  header { justify-content: center; flex-direction: column; gap: 10px; }
-  header nav { margin-top: 5px; }
-  header a { margin: 0 8px; }
-}
-</style>
+        .hero-img-container {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        /* Foto do Hero */
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: 0.5s ease;
+        }
+        .hero-img-container:hover img { filter: grayscale(0%); transform: scale(1.03); }
+
+        /* SEPARADOR DE SEÇÃO */
+        .section-divider {
+            border-top: 1px solid var(--accent);
+            padding: 30px 0;
+            margin-bottom: 60px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* VITRINE / GRID DE PROJETOS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px 40px;
+            padding-bottom: 120px;
+        }
+
+        .project-card {
+            cursor: pointer;
+            group: hover;
+        }
+
+        .card-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: #111;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s;
+        }
+
+        .project-card:hover .card-img img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .card-info { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-info h3 { font-size: 1.4rem; font-weight: 400; margin-bottom: 5px; color: var(--text-primary); }
+        .card-info span { color: var(--text-secondary); font-size: 0.9rem; }
+        .tag { font-size: 0.75rem; border: 1px solid #333; padding: 4px 10px; border-radius: 20px; color: #888; }
+
+        /* --- MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-container {
+            background: var(--modal-bg);
+            width: 100%;
+            max-width: 900px;
+            margin: auto 0;
+            border-radius: 8px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            min-height: auto;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .close-modal:hover { background: #fff; color: #000; }
+
+        .modal-header {
+            padding: 40px;
+            border-bottom: 1px solid #222;
+        }
+
+        .modal-header h2 { font-size: 2rem; margin-bottom: 10px; }
+        .modal-header p { color: var(--text-secondary); line-height: 1.6; }
+
+        .modal-body {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .modal-body img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--accent);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        footer h2 { font-size: 2rem; margin-bottom: 20px; }
+        footer p { color: var(--text-secondary); margin-bottom: 40px; }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; padding-top: 40px; gap: 40px; }
+            .hero-img-container { height: 350px; order: -1; }
+            .projects-grid { grid-template-columns: 1fr; gap: 40px; }
+            .modal-header, .modal-body { padding: 20px; }
+            .modal-header h2 { font-size: 1.5rem; }
+            .close-modal { top: 10px; right: 10px; width: 40px; height: 40px; font-size: 1.5rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-  <strong>Gabriel Damasceno</strong>
-  <nav>
-    <a href="#work">Beleza</a>
-    <a href="#food">Food</a>
-    <a href="#about">Sobre</a>
-  </nav>
-</header>
+    <div class="container">
+        <header>
+            <div class="logo">SEU NOME / DESIGN</div>
+            <div class="socials">
+                <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/in/jo%C3%A3o-gabriel-damasceno-24a1811bb/" target="_blank">LinkedIn</a>
+            </div>
+        </header>
 
-<section class="hero">
-  <div class="hero-photo"><img src="perfil.png"></div>
-  <div class="hero-content">
-    <h1>Design que organiza, comunica e posiciona.</h1>
-    <p>Me chamo Gabriel, Designer Gráfico e Diretor de Arte com mais de 10 anos de experiência, atuando entre conceito, estética e estratégia. Já trabalhei com grandes marcas e hoje busco projetos que valorizem clareza, consistência e identidade visual bem construída.</p>
-  </div>
-</section>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Designer multidisciplinar focado em performance e estética.</h1>
+                <p>10 anos de experiência transformando ideias complexas em interfaces funcionais. Especialista em Tech, Varejo e Growth Design.</p>
+                
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5511978413363" target="_blank" class="btn">WhatsApp</a>
+                    <a href="mailto:cantocriativo.sp@gmail.com" class="btn btn-outline">E-mail</a>
+                </div>
+            </div>
+            
+            <div class="hero-img-container">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Foto do Designer">
+            </div>
+        </section>
 
-<section class="section" id="work">
-  <h2>Beleza & Estética</h2>
-  <div class="grid">
-    <div class="project" data-title="Beleza não é ser igual" data-desc="Conceito e direção de arte.">
-      <img src="projeto1.png" loading="lazy">
-      <div class="project-info">
-        <h3>Beleza não é ser igual</h3>
-        <p>Conceito e direção de arte.</p>
-      </div>
+        <div class="section-divider">
+            Cases Selecionados
+        </div>
+
+        <section class="projects-grid">
+            
+            <div class="project-card" onclick="openModal(0)">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000&auto=format&fit=crop" alt="Fintechs Globais">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>Fintechs Globais</h3>
+                        <span>Product Design • UX Strategy</span>
+                    </div>
+                    <span class="tag">Fintech</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(1)">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop" alt="Varejo & E-commerce">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>Varejo & E-commerce</h3>
+                        <span>UI Design • Conversion</span>
+                    </div>
+                    <span class="tag">Varejo</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(2)">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop" alt="Food & Beverage">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>Food & Beverage</h3>
+                        <span>Branding • Social</span>
+                    </div>
+                    <span class="tag">Food</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(3)">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000&auto=format&fit=crop" alt="Health & Beauty">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>Health & Beauty</h3>
+                        <span>Web Design • Ads</span>
+                    </div>
+                    <span class="tag">Beauty</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(4)">
+                <div class="card-img">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000&auto=format&fit=crop" alt="Startups">
+                </div>
+                <div class="card-info">
+                    <div>
+                        <h3>Startups (Series B+)</h3>
+                        <span>Growth Design • Pitch Decks</span>
+                    </div>
+                    <span class="tag">Startup</span>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <h2>Vamos criar algo juntos?</h2>
+            <p>Disponível para projetos full-time ou freelance.</p>
+            <div class="socials" style="justify-content: center;">
+                <a href="https://wa.me/5511978413363" target="_blank">WhatsApp</a>
+                <a href="mailto:cantocriativo.sp@gmail.com">Email</a>
+                <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram</a>
+            </div>
+            <br>
+            <p style="font-size: 0.7rem; opacity: 0.5;">&copy; 2026 Portfolio Profissional.</p>
+        </footer>
     </div>
-    <div class="project" data-title="Brilho não é filtro" data-desc="Comunicação visual focada em resultado.">
-      <img src="projeto2.png" loading="lazy">
-      <div class="project-info">
-        <h3>Brilho não é filtro</h3>
-        <p>Comunicação visual focada em resultado.</p>
-      </div>
+
+    <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+        <button class="close-modal" onclick="closeModalBtn()">&times;</button>
+        
+        <div class="modal-container" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modalTitle">Título do Projeto</h2>
+                <p id="modalDesc">Descrição detalhada do projeto.</p>
+            </div>
+            <div class="modal-body" id="modalImages">
+                </div>
+        </div>
     </div>
-    <div class="project" data-title="Brilho de salão em casa" data-desc="Design informativo e acessível.">
-      <img src="projeto3.png" loading="lazy">
-      <div class="project-info">
-        <h3>Brilho de salão em casa</h3>
-        <p>Design informativo e acessível.</p>
-      </div>
-    </div>
-    <div class="project" data-title="O brilho que reflete a sua força" data-desc="Estética e autoestima.">
-      <img src="projeto4.png" loading="lazy">
-      <div class="project-info">
-        <h3>O brilho que reflete a sua força</h3>
-        <p>Estética e autoestima.</p>
-      </div>
-    </div>
-    <div class="project" data-title="Maquiagem que revela" data-desc="Foco em textura e detalhe.">
-      <img src="projeto5.png" loading="lazy">
-      <div class="project-info">
-        <h3>Maquiagem que revela</h3>
-        <p>Foco em textura e detalhe.</p>
-      </div>
-    </div>
-    <div class="project" data-title="Bella Essence" data-desc="Identidade visual sofisticada.">
-      <img src="projeto6.png" loading="lazy">
-      <div class="project-info">
-        <h3>Bella Essence</h3>
-        <p>Identidade visual sofisticada.</p>
-      </div>
-    </div>
-    <div class="project" data-title="Sextou sem ficar na régua" data-desc="Campanha direta e humana.">
-      <img src="projeto7.png" loading="lazy">
-      <div class="project-info">
-        <h3>Sextou sem ficar na régua</h3>
-        <p>Campanha direta e humana.</p>
-      </div>
-    </div>
-    <div class="project" data-title="Presença não se improvisa" data-desc="Autoridade e consistência.">
-      <img src="projeto8.png" loading="lazy">
-      <div class="project-info">
-        <h3>Presença não se improvisa</h3>
-        <p>Autoridade e consistência.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="section" id="food">
-  <h2>Food & Beverage</h2>
-  <div class="grid">
-    <div class="project" data-title="Sabor que se vê" data-desc="Identidade para food brands.">
-      <img src="food1.png">
-      <div class="project-info"><h3>Sabor que se vê</h3><p>Food Design</p></div>
-    </div>
-    <div class="project" data-title="Textura e Cor" data-desc="Fotografia gastronômica.">
-      <img src="food2.png">
-      <div class="project-info"><h3>Textura e Cor</h3><p>Composição</p></div>
-    </div>
-    <div class="project" data-title="Food Project 03" data-desc="Descrição do projeto food 03.">
-      <img src="food3.png">
-      <div class="project-info"><h3>Food 03</h3><p>Branding</p></div>
-    </div>
-    <div class="project" data-title="Food Project 04" data-desc="Descrição do projeto food 04.">
-      <img src="food4.png">
-      <div class="project-info"><h3>Food 04</h3><p>Digital</p></div>
-    </div>
-    <div class="project" data-title="Food Project 05" data-desc="Descrição do projeto food 05.">
-      <img src="food5.png">
-      <div class="project-info"><h3>Food 05</h3><p>Layout</p></div>
-    </div>
-    <div class="project" data-title="Food Project 06" data-desc="Descrição do projeto food 06.">
-      <img src="food6.png">
-      <div class="project-info"><h3>Food 06</h3><p>Art Direction</p></div>
-    </div>
-    <div class="project" data-title="Food Project 07" data-desc="Descrição do projeto food 07.">
-      <video src="food7.webm" autoplay loop muted playsinline></video>
-      <div class="project-info"><h3>Food 07</h3><p>Packaging</p></div>
-    </div>
-    <div class="project" data-title="Food Project 08" data-desc="Descrição do projeto food 08.">
-      <img src="food8.png">
-      <div class="project-info"><h3>Food 08</h3><p>Concept</p></div>
-    </div>
-  </div>
-</section>
+    <script>
+        // DADOS DOS PROJETOS COM IMAGENS REAIS
+        const portfolioData = [
+            {
+                title: "Fintechs Globais",
+                desc: "Desenvolvimento de interfaces escaláveis para bancos digitais e carteiras de investimento. Foco em segurança, clareza de dados e facilidade de uso.",
+                // Imagens de Dashboards e Gráficos
+                images: [
+                    "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=1000&auto=format&fit=crop"
+                ] 
+            },
+            {
+                title: "Varejo & E-commerce",
+                desc: "Redesign de funil de vendas e páginas de produto otimizadas para conversão mobile.",
+                // Imagens de Loja e Moda
+                images: [
+                    "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000&auto=format&fit=crop"
+                ]
+            },
+            {
+                title: "Food & Beverage",
+                desc: "Identidade visual e estratégia de conteúdo para aplicativos de delivery e marcas de consumo.",
+                // Imagens de Comida Gourmet e Ambiente
+                images: [
+                    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop"
+                ]
+            },
+            {
+                title: "Health & Beauty",
+                desc: "Landing pages de alta performance para lançamentos de produtos de skincare e saúde.",
+                // Imagens de Produtos de Beleza Clean
+                images: [
+                    "https://images.unsplash.com/photo-1571781926291-280553fd1f54?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=1000&auto=format&fit=crop"
+                ]
+            },
+            {
+                title: "Startups (Series B+)",
+                desc: "Criação de Pitch Decks, MVPs e Design Systems para startups em fase de crescimento acelerado.",
+                // Imagens de Ambiente Startup e Whiteboard
+                images: [
+                    "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
+                ]
+            }
+        ];
 
-<section class="section" id="about">
-  <h2>Sobre</h2>
-  <div class="about-wrapper">
-    <div class="about">
-      Designer com mais de 10 anos de experiência, construí minha trajetória unindo estética e estratégia para marcas como Itaú, Oreo, Bic e Nivea. Com passagens por startups e agências de grande porte, transito com fluidez entre o design digital (Social Media e UI/UX), performance (Google/Meta Ads) e projetos offline, sempre focado em converter criatividade em impacto visual e resultados de negócio.
-      <br><br>
-      Minha atuação vai da concepção à execução técnica, incluindo o domínio de ferramentas de automação como RD Station e tecnologias emergentes. Sou um entusiasta da inovação e utilizo ferramentas de IA para otimizar processos de desenvolvimento, o que reflete minha dedicação em aprender constantemente e entregar soluções modernas para marcas que veem o design como uma experiência de alto valor.
-    </div>
-  </div>
-</section>
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalImages = document.getElementById('modalImages');
 
-<section class="section contact-section" id="contact">
-  <h2>Fale comigo</h2>
-  <div class="contact-links">
-    <a href="https://wa.me/5511933057034" target="_blank">WhatsApp: (11) 93305-7034</a> <span>|</span>
-    <a href="mailto:cantocriativo.sp@gmail.com">E-mail: cantocriativo.sp@gmail.com</a> <span>|</span>
-    <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram: gabs.da96</a>
-  </div>
-</section>
+        function openModal(index) {
+            const data = portfolioData[index];
+            
+            modalTitle.innerText = data.title;
+            modalDesc.innerText = data.desc;
+            modalImages.innerHTML = '';
 
-<footer>© 2026 - Gabriel Damasceno</footer>
+            data.images.forEach(imgSrc => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = data.title;
+                img.onerror = function() { this.src = 'https://via.placeholder.com/800x600/222/555?text=Imagem+Carregando'; };
+                modalImages.appendChild(img);
+            });
 
-<div class="modal" id="modal">
-  <span class="close">&times;</span>
-  <span class="prev">&#10094;</span>
-  <div class="modal-container" id="modalContainer">
-    </div>
-  <span class="next">&#10095;</span>
-  <div class="caption">
-    <h4 id="captionTitle"></h4>
-    <p id="captionDesc"></p>
-  </div>
-</div>
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-<script>
-const modal = document.getElementById("modal");
-const modalContainer = document.getElementById("modalContainer");
-const captionTitle = document.getElementById("captionTitle");
-const captionDesc = document.getElementById("captionDesc");
-const projects = [...document.querySelectorAll(".project")];
+        function closeModal(event) {
+            if (event.target === modal) {
+                closeModalBtn();
+            }
+        }
 
-let current = 0;
-let isZoomed = false;
-let startX, startY, x = 0, y = 0;
-let touchStartX = 0;
-let touchEndX = 0;
-let modalMedia; // Variável global para referenciar o elemento atual no modal
+        function closeModalBtn() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
-projects.forEach((proj, i) => {
-  proj.onclick = () => { current = i; openModal(); };
-});
-
-function openModal() {
-  const sourceMedia = projects[current].querySelector("img") || projects[current].querySelector("video");
-  const isVideo = sourceMedia.tagName.toLowerCase() === "video";
-
-  modalContainer.innerHTML = ""; // Limpa o modal
-
-  if (isVideo) {
-    modalMedia = document.createElement("video");
-    modalMedia.src = sourceMedia.src;
-    modalMedia.autoplay = true;
-    modalMedia.loop = true;
-    modalMedia.controls = true;
-    modalMedia.muted = false;
-  } else {
-    modalMedia = document.createElement("img");
-    modalMedia.src = sourceMedia.src;
-  }
-
-  modalMedia.className = "modal-media";
-  modalContainer.appendChild(modalMedia);
-  
-  captionTitle.textContent = projects[current].dataset.title;
-  captionDesc.textContent = projects[current].dataset.desc;
-  
-  resetZoom();
-  modal.style.display = "flex";
-  
-  // Setup dos cliques para zoom (apenas para imagens)
-  if (!isVideo) {
-    modalMedia.onclick = (e) => {
-      e.stopPropagation();
-      isZoomed = !isZoomed;
-      modalMedia.classList.toggle("zoomed", isZoomed);
-      modal.classList.toggle("img-zoomed", isZoomed);
-      if (!isZoomed) resetZoom();
-      else modalMedia.style.transform = `translate(0px, 0px) scale(2)`;
-    };
-  }
-
-  setTimeout(() => modal.classList.add("show"), 10);
-  showControls();
-}
-
-function resetZoom() {
-  isZoomed = false;
-  x = 0; y = 0;
-  if(modalMedia) {
-    modalMedia.classList.remove("zoomed");
-    modalMedia.style.transform = `translate(0px, 0px) scale(1)`;
-  }
-  modal.classList.remove("img-zoomed");
-}
-
-// Lógica de arrastar para zoom
-modalContainer.onmousedown = (e) => {
-  if (!isZoomed) return;
-  e.preventDefault(); 
-  startX = e.clientX - x;
-  startY = e.clientY - y;
-  modalContainer.onmousemove = (e) => {
-    x = e.clientX - startX;
-    y = e.clientY - startY;
-    modalMedia.style.transform = `translate(${x}px, ${y}px) scale(2)`;
-  };
-};
-window.onmouseup = () => modalContainer.onmousemove = null;
-
-// Touch events
-modalContainer.ontouchstart = (e) => {
-  touchStartX = e.touches[0].clientX;
-  if (!isZoomed) return;
-  startX = e.touches[0].clientX - x;
-  startY = e.touches[0].clientY - y;
-};
-
-modalContainer.ontouchmove = (e) => {
-  touchEndX = e.touches[0].clientX;
-  if (!isZoomed) return;
-  x = e.touches[0].clientX - startX;
-  y = e.touches[0].clientY - startY;
-  modalMedia.style.transform = `translate(${x}px, ${y}px) scale(2)`;
-};
-
-modalContainer.ontouchend = () => {
-  if (isZoomed) return;
-  const swipeDistance = touchEndX - touchStartX;
-  const threshold = 50; 
-  if (touchEndX !== 0 && Math.abs(swipeDistance) > threshold) {
-    if (swipeDistance < 0) { next(); } else { prev(); }
-  }
-  touchStartX = 0;
-  touchEndX = 0;
-};
-
-function next() { current = (current + 1) % projects.length; transition(); }
-function prev() { current = (current - 1 + projects.length) % projects.length; transition(); }
-
-function transition() { 
-  modal.classList.remove("show"); 
-  setTimeout(openModal, 300); 
-}
-
-function showControls() { 
-  modal.classList.add("show-controls"); 
-  setTimeout(() => modal.classList.remove("show-controls"), 2000); 
-}
-
-modal.querySelector(".next").onclick = (e) => { e.stopPropagation(); next(); };
-modal.querySelector(".prev").onclick = (e) => { e.stopPropagation(); prev(); };
-modal.querySelector(".close").onclick = () => { 
-  modal.style.display = "none"; 
-  modalContainer.innerHTML = ""; // Para o vídeo imediatamente
-  resetZoom(); 
-};
-
-document.addEventListener('keydown', (e) => {
-  if (modal.style.display === "flex") {
-    if (e.key === "ArrowRight" && !isZoomed) next();
-    if (e.key === "ArrowLeft" && !isZoomed) prev();
-    if (e.key === "Escape") { modal.querySelector(".close").onclick(); }
-  }
-});
-</script>
-
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModalBtn();
+            }
+        });
+    </script>
 </body>
 </html>
-
