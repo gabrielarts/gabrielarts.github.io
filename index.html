@@ -255,10 +255,15 @@
 
         /* RESPONSIVIDADE */
         @media (max-width: 768px) {
+            body { text-align: center; } /* Centraliza textos gerais no mobile */
+            header { flex-direction: column; gap: 20px; }
             .hero { grid-template-columns: 1fr; padding-top: 40px; gap: 40px; }
+            .hero-content p { margin-left: auto; margin-right: auto; } /* Centraliza o parágrafo do hero */
+            .cta-buttons { justify-content: center; }
             .hero-img-container { height: 350px; order: -1; }
             .projects-grid { grid-template-columns: 1fr; gap: 40px; }
-            .modal-header, .modal-body { padding: 20px; }
+            .card-info { flex-direction: column; align-items: center; gap: 10px; }
+            .modal-header, .modal-body { padding: 20px; text-align: center; }
             .modal-header h2 { font-size: 1.5rem; }
             .close-modal { top: 10px; right: 10px; width: 40px; height: 40px; font-size: 1.5rem; }
         }
@@ -299,14 +304,14 @@
             
             <div class="project-card" onclick="openModal(0)">
                 <div class="card-img">
-                    <img src="T1.png" alt="Fintechs Globais">
+                    <img src="T1.png" alt="NOMAD">
                 </div>
                 <div class="card-info">
                     <div>
                         <h3>NOMAD: HARDWARE BIOLÓGICO</h3>
-                        <span>A fusão entre tecido orgânico e precisão sintética. Uma identidade visual técnica projetada para a próxima etapa da evolução humana.</span>
+                        <span>A fusão entre tecido orgânico e precisão sintética.</span>
                     </div>
-                    <span class="tag">Fintech</span>
+                    <span class="tag">Tech</span>
                 </div>
             </div>
 
@@ -362,16 +367,16 @@
                 </div>
             </div>
 
-             <div class="project-card" onclick="openModal(4)">
+             <div class="project-card" onclick="openModal(5)">
                 <div class="card-img">
-                    <img src="T6.png" alt="Startups">
+                    <img src="T6.png" alt="OBSIDIAN">
                 </div>
                 <div class="card-info">
                     <div>
-                        <h3>Startups (Series B+)</h3>
-                        <span>Growth Design • Pitch Decks</span>
+                        <h3>OBSIDIAN</h3>
+                        <span>Arquitetura • Brutalismo Editorial</span>
                     </div>
-                    <span class="tag">Startup</span>
+                    <span class="tag">Architecture</span>
                 </div>
             </div>
 
@@ -404,53 +409,36 @@
     </div>
 
     <script>
-        // DADOS DOS PROJETOS COM IMAGENS REAIS
         const portfolioData = [
             {
-                title: "Fintechs Globais",
-                desc: "Desenvolvimento de interfaces escaláveis para bancos digitais e carteiras de investimento. Foco em segurança, clareza de dados e facilidade de uso.",
-                // Imagens de Dashboards e Gráficos
-                images: [
-                    "nomad4.jpg",
-                    "nomad3.png",
-                    "nomad1.jpg"
-                ] 
+                title: "NOMAD: HARDWARE BIOLÓGICO",
+                desc: "A fusão entre tecido orgânico e precisão sintética. Uma identidade visual técnica projetada para a próxima etapa da evolução humana.",
+                images: ["nomad4.jpg", "nomad3.png", "nomad1.jpg"] 
             },
             {
                 title: "Varejo & E-commerce",
                 desc: "Redesign de funil de vendas e páginas de produto otimizadas para conversão mobile.",
-                // Imagens de Loja e Moda
-                images: [
-                    "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000&auto=format&fit=crop"
-                ]
+                images: ["varejo1.jpg", "varejo2.jpg"]
             },
             {
                 title: "Food & Beverage",
                 desc: "Identidade visual e estratégia de conteúdo para aplicativos de delivery e marcas de consumo.",
-                // Imagens de Comida Gourmet e Ambiente
-                images: [
-                    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop"
-                ]
+                images: ["food1.jpg", "food2.jpg"]
             },
             {
                 title: "Health & Beauty",
                 desc: "Landing pages de alta performance para lançamentos de produtos de skincare e saúde.",
-                // Imagens de Produtos de Beleza Clean
-                images: [
-                    "https://images.unsplash.com/photo-1571781926291-280553fd1f54?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=1000&auto=format&fit=crop"
-                ]
+                images: ["beauty1.jpg", "beauty2.jpg"]
             },
             {
                 title: "Startups (Series B+)",
                 desc: "Criação de Pitch Decks, MVPs e Design Systems para startups em fase de crescimento acelerado.",
-                // Imagens de Ambiente Startup e Whiteboard
-                images: [
-                    "https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=1000&auto=format&fit=crop",
-                    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
-                ]
+                images: ["startup1.jpg", "startup2.jpg"]
+            },
+            {
+                title: "OBSIDIAN",
+                desc: "Design de interiores e arquitetura brutalista focada no uso de mármores e concreto. Estética editorial e minimalista.",
+                images: ["obsidian1.jpg", "obsidian2.jpg", "obsidian3.jpg"]
             }
         ];
 
@@ -497,10 +485,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
