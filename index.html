@@ -144,4 +144,285 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.8;
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s;
+        }
+
+        .project-card:hover .card-img img { transform: scale(1.05); opacity: 1; }
+
+        .card-info { display: flex; justify-content: space-between; align-items: flex-start; }
+        .card-info h3 { font-size: 1.4rem; font-weight: 400; margin-bottom: 5px; color: var(--text-primary); }
+        .card-info span { color: var(--text-secondary); font-size: 0.9rem; }
+        .tag { font-size: 0.75rem; border: 1px solid #333; padding: 4px 10px; border-radius: 20px; color: #888; }
+
+        /* --- MODAL AJUSTADO (SÓ DIMENSÕES) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none; /* Alterado de opacity para display para evitar o "site preto" */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .modal-container {
+            background: var(--modal-bg);
+            width: 90%;
+            max-width: 900px; /* Reduzi o container para não ficar gigante */
+            max-height: 85vh; /* Altura máxima controlada */
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.6);
+            border: 1px solid #444;
+            color: #fff;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1010;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .close-modal:hover { background: #fff; color: #000; }
+
+        .modal-header {
+            padding: 30px 40px;
+            border-bottom: 1px solid #222;
+        }
+
+        .modal-body {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            width: 100%;
+            height: 100%;
+            scrollbar-width: none;
+        }
+        .carousel-track::-webkit-scrollbar { display: none; }
+
+        .carousel-track img {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 60vh; /* Altura da imagem reduzida conforme solicitado */
+            object-fit: contain; /* Garante que a imagem não seja cortada */
+            scroll-snap-align: center;
+            padding: 0 50px; /* Espaçamento lateral para a imagem respirar */
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: 1px solid #444;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .carousel-btn:hover { background: #fff; color: #000; }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--accent);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero { grid-template-columns: 1fr; text-align: center; }
+            .hero-img-container { height: 300px; order: -1; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .carousel-btn { display: none; }
+            .carousel-track img { height: 50vh; padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">GABRIEL / DESIGN</div>
+            <div class="socials">
+                <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/in/jo%C3%A3o-gabriel-damasceno-24a1811bb/" target="_blank">LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Designer multidisciplinar focado em performance e estética.</h1>
+                <p>10 anos de experiência transformando ideias complexas em interfaces funcionais. Especialista em Tech, Varejo e Growth Design.</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/5511978413363" target="_blank" class="btn">WhatsApp</a>
+                    <a href="mailto:cantocriativo.sp@gmail.com" class="btn btn-outline">E-mail</a>
+                </div>
+            </div>
+            <div class="hero-img-container">
+                <img src="PERFIL1.png" alt="Perfil">
+            </div>
+        </section>
+
+        <div class="section-divider">Clique em um projeto para ver o case completo</div>
+
+        <section class="projects-grid">
+            <div class="project-card" onclick="openModal(0)">
+                <div class="card-img"><img src="T1.png" alt="NOMAD"></div>
+                <div class="card-info">
+                    <div><h3>NOMAD</h3><span>Interfaces de Performance</span></div>
+                    <span class="tag">Tech</span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal(1)">
+                <div class="card-img"><img src="T2.png" alt="CRISPY"></div>
+                <div class="card-info">
+                    <div><h3>CRISPY & CO</h3><span>Branding e Conversão</span></div>
+                    <span class="tag">Food</span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal(2)">
+                <div class="card-img"><img src="T3.png" alt="AETHER"></div>
+                <div class="card-info">
+                    <div><h3>AETHER</h3><span>Fintech Experience</span></div>
+                    <span class="tag">Fintech</span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal(3)">
+                <div class="card-img"><img src="T4.png" alt="OBSIDIAN"></div>
+                <div class="card-info">
+                    <div><h3>OBSIDIAN</h3><span>Brutalismo e Editorial</span></div>
+                    <span class="tag">Architecture</span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal(4)">
+                <div class="card-img"><img src="T5.png" alt="BEAUTY"></div>
+                <div class="card-info">
+                    <div><h3>BEAUTY & HEALTH</h3><span>Growth Design</span></div>
+                    <span class="tag">Beauty</span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal(5)">
+                <div class="card-img"><img src="T6.png" alt="WORKS"></div>
+                <div class="card-info">
+                    <div><h3>SELECTED WORKS</h3><span>Publicidade</span></div>
+                    <span class="tag">Social Media</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h2>Vamos criar algo juntos?</h2>
+            <p>Disponível para projetos full-time ou freelance.</p>
+            <div class="socials" style="justify-content: center;">
+                <a href="https://wa.me/5511978413363" target="_blank">WhatsApp</a>
+                <a href="mailto:cantocriativo.sp@gmail.com">Email</a>
+                <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram</a>
+            </div>
+            <br>
+            <p style="font-size: 0.7rem; opacity: 0.5;">&copy; 2026 Portfolio Profissional.</p>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="projectModal" onclick="closeModalOutside(event)">
+        <button class="close-modal" onclick="closeModalBtn()">&times;</button>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modalTitle">Título</h2>
+                <p id="modalDesc">Descrição</p>
+            </div>
+            <div class="modal-body">
+                <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)">&#10094;</button>
+                <div class="carousel-track" id="modalImages"></div>
+                <button class="carousel-btn next-btn" onclick="scrollCarousel(1)">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const portfolioData = [
+            { title: "NOMAD: HARDWARE BIOLÓGICO", desc: "A fusão entre tecido orgânico e precisão sintética.", images: ["n1.png", "n2.png", "n3.png", "n4.png", "n5.png", "n6.png", "n7.png"] },
+            { title: "Crispy & Co: Appetite Appeal", desc: "Estratégia de branding focada em aumento de taxa de cliques.", images: ["c1.png", "c2.png", "c3.png", "c4.png", "c5.png", "c6.png", "c7.png", "c8.png", "c9.png"] },
+            { title: "AETHER", desc: "Minimalismo Financeiro de Alto Padrão.", images: ["a1.png", "Prancheta 1.jpg", "a2.png", "a3.png", "a4.png", "a5.png", "a6.png", "a7.png", "a8.png"] },
+            { title: "OBSIDIAN", desc: "Design de interiores e arquitetura brutalista.", images: ["o1.png", "o2.png", "o3.png", "o4.png", "o5.png", "o6.png"] },
+            { title: "Beleza em Pixels", desc: "Growth Design estruturando a jornada de compra.", images: ["b1.png", "b2.png", "b3.png", "b4.png", "b5.png", "b6.png"] },
+            { title: "Grandes Marcas", desc: "Colaborações estratégicas para marcas como Oreo, Netflix e Itaú.", images: ["p1.png", "p2.png", "p3.png", "p4.png", "p5.png", "p6.png", "p7.png", "p8.png"] }
+        ];
+
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalImages = document.getElementById('modalImages');
+
+        function openModal(index) {
+            const data = portfolioData[index];
+            modalTitle.innerText = data.title;
+            modalDesc.innerText = data.desc;
+            modalImages.innerHTML = '';
+            data.images.forEach(imgSrc => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.onerror = function() { this.src = 'https://via.placeholder.com/800x1000/222/555?text=Imagem+Indisponível'; };
+                modalImages.appendChild(img);
+            });
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            modalImages.scrollTo(0, 0);
+        }
+
+        function scrollCarousel(direction) {
+            const width = modalImages.clientWidth;
+            modalImages.scrollBy({ left: width * direction, behavior: 'smooth' });
+        }
+
+        function closeModalBtn() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeModalOutside(event) {
+            if (event.target === modal) closeModalBtn();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeModalBtn();
+            if (e.key === "ArrowLeft") scrollCarousel(-1);
+            if (e.key === "ArrowRight") scrollCarousel(1);
+        });
+    </script>
+</body>
+</html>
