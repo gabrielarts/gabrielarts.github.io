@@ -100,7 +100,6 @@
             border-radius: 4px;
         }
 
-        /* Foto do Hero */
         .hero-img-container img {
             width: 100%;
             height: 100%;
@@ -110,7 +109,6 @@
         }
         .hero-img-container:hover img { filter: grayscale(0%); transform: scale(1.03); }
 
-        /* SEPARADOR DE SEÇÃO */
         .section-divider {
             border-top: 1px solid var(--accent);
             padding: 30px 0;
@@ -130,9 +128,7 @@
             padding-bottom: 120px;
         }
 
-        .project-card {
-            cursor: pointer;
-        }
+        .project-card { cursor: pointer; }
 
         .card-img {
             width: 100%;
@@ -194,12 +190,9 @@
             position: relative;
             transform: translateY(20px);
             transition: transform 0.3s ease;
-            min-height: auto;
         }
 
-        .modal-overlay.active .modal-container {
-            transform: translateY(0);
-        }
+        .modal-overlay.active .modal-container { transform: translateY(0); }
 
         .close-modal {
             position: fixed;
@@ -240,7 +233,6 @@
             width: 100%;
             height: auto;
             border-radius: 4px;
-            background: #000;
         }
 
         /* FOOTER */
@@ -264,7 +256,6 @@
             .projects-grid { grid-template-columns: 1fr; gap: 40px; }
             .card-info { flex-direction: column; align-items: center; gap: 10px; }
             .modal-header, .modal-body { padding: 20px; text-align: center; }
-            .modal-header h2 { font-size: 1.5rem; }
             .close-modal { top: 10px; right: 10px; width: 40px; height: 40px; font-size: 1.5rem; }
         }
     </style>
@@ -284,98 +275,77 @@
             <div class="hero-content">
                 <h1>Designer multidisciplinar focado em performance e estética.</h1>
                 <p>10 anos de experiência transformando ideias complexas em interfaces funcionais. Especialista em Tech, Varejo e Growth Design.</p>
-                
                 <div class="cta-buttons">
                     <a href="https://wa.me/5511978413363" target="_blank" class="btn">WhatsApp</a>
                     <a href="mailto:cantocriativo.sp@gmail.com" class="btn btn-outline">E-mail</a>
                 </div>
             </div>
-            
             <div class="hero-img-container">
                 <img src="PERFIL1.png">
             </div>
         </section>
 
-        <div class="section-divider">
-           Clique em um projeto para ver o case completo
-        </div>
+        <div class="section-divider">Clique em um projeto para ver o case completo</div>
 
         <section class="projects-grid">
             
             <div class="project-card" onclick="openModal(0)">
                 <div class="card-img">
-                    <img src="T1.png" alt="NOMAD">
+                    <img src="gl.jpg" alt="Grupo Lar">
                 </div>
                 <div class="card-info">
                     <div>
-                        <h3>NOMAD</h3>
-                        <span>Interfaces de Performance & Bio-Tech</span>
+                        <h3>Grupo Lar - Videos Google ADS</h3>
+                        <span>Performance & Motion Design</span>
                     </div>
-                    <span class="tag">Tech</span>
+                    <span class="tag">Ads</span>
                 </div>
             </div>
 
             <div class="project-card" onclick="openModal(1)">
-                <div class="card-img">
-                    <img src="T2.png" alt="Varejo & E-commerce">
-                </div>
+                <div class="card-img"><img src="T1.png" alt="NOMAD"></div>
                 <div class="card-info">
-                    <div>
-                        <h3>CRISPY & CO</h3>
-                        <span>Estratégia de Branding e Design de Conversão</span>
-                    </div>
-                    <span class="tag">Food</span>
+                    <div><h3>NOMAD</h3><span>Interfaces de Performance & Bio-Tech</span></div>
+                    <span class="tag">Tech</span>
                 </div>
             </div>
 
             <div class="project-card" onclick="openModal(2)">
-                <div class="card-img">
-                    <img src="T3.png" alt="Food & Beverage">
-                </div>
+                <div class="card-img"><img src="T2.png" alt="CRISPY & CO"></div>
                 <div class="card-info">
-                    <div>
-                        <h3>AETHER</h3>
-                        <span>Design de Interface e Experiência para cartões</span>
-                    </div>
-                    <span class="tag">Fintech</span>
+                    <div><h3>CRISPY & CO</h3><span>Branding e Design de Conversão</span></div>
+                    <span class="tag">Food</span>
                 </div>
             </div>
 
             <div class="project-card" onclick="openModal(3)">
-                <div class="card-img">
-                    <img src="T4.png" alt="Health & Beauty">
-                </div>
+                <div class="card-img"><img src="T3.png" alt="AETHER"></div>
                 <div class="card-info">
-                    <div>
-                        <h3>OBSIDIAN</h3>
-                        <span>Arquitetura Brutalista & Design Editorial</span>
-                    </div>
-                    <span class="tag">Architecture</span>
+                    <div><h3>AETHER</h3><span>Design de Interface para cartões</span></div>
+                    <span class="tag">Fintech</span>
                 </div>
             </div>
 
             <div class="project-card" onclick="openModal(4)">
-                <div class="card-img">
-                    <img src="T5.png" alt="Startups">
-                </div>
+                <div class="card-img"><img src="T4.png" alt="OBSIDIAN"></div>
                 <div class="card-info">
-                    <div>
-                        <h3>Beauty & Health</h3>
-                        <span>Social media de alta conversão</span>
-                    </div>
+                    <div><h3>OBSIDIAN</h3><span>Arquitetura Brutalista</span></div>
+                    <span class="tag">Architecture</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(5)">
+                <div class="card-img"><img src="T5.png" alt="Beauty & Health"></div>
+                <div class="card-info">
+                    <div><h3>Beauty & Health</h3><span>Social media de alta conversão</span></div>
                     <span class="tag">Beauty</span>
                 </div>
             </div>
 
-             <div class="project-card" onclick="openModal(5)">
-                <div class="card-img">
-                    <img src="T6.png" alt="OBSIDIAN">
-                </div>
+             <div class="project-card" onclick="openModal(6)">
+                <div class="card-img"><img src="T6.png" alt="SELECTED WORKS"></div>
                 <div class="card-info">
-                    <div>
-                        <h3>SELECTED WORKS</h3>
-                        <span>Compilado de campanhas publicitárias</span>
-                    </div>
+                    <div><h3>SELECTED WORKS</h3><span>Campanhas publicitárias</span></div>
                     <span class="tag">Social Media</span>
                 </div>
             </div>
@@ -388,7 +358,6 @@
             <div class="socials" style="justify-content: center;">
                 <a href="https://wa.me/5511978413363" target="_blank">WhatsApp</a>
                 <a href="mailto:cantocriativo.sp@gmail.com">Email</a>
-                <a href="https://www.instagram.com/gabs.da96/" target="_blank">Instagram</a>
             </div>
             <br>
             <p style="font-size: 0.7rem; opacity: 0.5;">&copy; 2026 Portfolio Profissional.</p>
@@ -397,48 +366,51 @@
 
     <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
         <button class="close-modal" onclick="closeModalBtn()">&times;</button>
-        
         <div class="modal-container" onclick="event.stopPropagation()">
             <div class="modal-header">
-                <h2 id="modalTitle">Título do Projeto</h2>
-                <p id="modalDesc">Descrição detalhada do projeto.</p>
+                <h2 id="modalTitle">Título</h2>
+                <p id="modalDesc">Descrição</p>
             </div>
-            <div class="modal-body" id="modalImages">
-                </div>
+            <div class="modal-body" id="modalImages"></div>
         </div>
     </div>
 
     <script>
         const portfolioData = [
-            {
-                title: "NOMAD: HARDWARE BIOLÓGICO",
-                desc: "A fusão entre tecido orgânico e precisão sintética. Uma identidade visual técnica projetada para a próxima etapa da evolução humana.",
-                images: ["gl1.mp4", "n1.png", "n3.png", "n6.png", "n7.png"] 
+            { 
+                title: "Grupo Lar - Videos Google ADS", 
+                desc: "Criação de vídeos otimizados para campanhas de performance no Google Ads.", 
+                images: ["gl1.mp4", "gl2.mp4", "gl3.mp4", "gl4.mp4"] 
             },
-            {
-                title: "Crispy & Co: Criando Appetite Appeal no Digital",
-                desc: "No projeto Crispy & Co, o objetivo foi traduzir a crocância e o sabor através das cores. Utilizamos uma paleta vibrante de tons quentes combinada com uma tipografia 'bold' e moderna.",
-                images: ["gl2.mp4", "c1.png", "c2.png", "c3.png", "c8.png", "c9.png"]
+            { 
+                title: "NOMAD: HARDWARE BIOLÓGICO", 
+                desc: "A fusão entre tecido orgânico e precisão sintética.", 
+                images: ["n1.png", "n3.png", "n6.png", "n7.png"] 
             },
-            {
-                title: "AETHER",
-                desc: "Minimalismo Financeiro de Alto Padrão focado em experiência premium.",
-                images: ["gl3.mp4", "a1.png", "a2.png", "a3.png", "a7.png", "a8.png"]
+            { 
+                title: "Crispy & Co: Appetite Appeal", 
+                desc: "Estratégia para aumentar conversão em delivery.", 
+                images: ["c1.png", "c2.png", "c3.png", "c8.png", "c9.png"] 
             },
-            {
-                title: "OBSIDIAN",
-                desc: "Design de interiores e arquitetura brutalista focada no uso de mármores e concreto. Estética editorial e minimalista.",
-                images: ["gl4.mp4", "o1.png", "o2.png", "o3.png", "o4.png", "o5.png", "o6.png"]
+            { 
+                title: "AETHER", 
+                desc: "Minimalismo Financeiro de Alto Padrão.", 
+                images: ["a1.png", "a2.png", "a3.png", "a7.png", "a8.png"] 
             },
-            {
-                title: "A Ciência da Beleza em Pixels",
-                desc: "O foco principal foi o Growth Design, estruturando a página para guiar o usuário através dos benefícios científicos do produto.",
-                images: ["b1.png", "b2.png", "b3.png", "b4.png", "b5.png", "b6.png"]
+            { 
+                title: "OBSIDIAN", 
+                desc: "Design de interiores e arquitetura brutalista.", 
+                images: ["o1.png", "o2.png", "o3.png", "o4.png", "o5.png"] 
             },
-            {
-                title: "Grandes Marcas",
-                desc: "Este case reúne colaborações estratégicas para marcas como Oreo e Netflix (Wandinha), Itaú, Nivea e BIC. O foco aqui foi a adaptação criativa.",
-                images: ["p1.png", "p2.png", "p3.png", "p4.png", "p5.png", "p8.png"]
+            { 
+                title: "A Ciência da Beleza", 
+                desc: "Growth Design equilibrando confiança e estética.", 
+                images: ["b1.png", "b2.png", "b3.png", "b4.png"] 
+            },
+            { 
+                title: "Grandes Marcas", 
+                desc: "Colaborações estratégicas para Oreo, Netflix e Itaú.", 
+                images: ["p1.png", "p2.png", "p3.png", "p4.png", "p8.png"] 
             }
         ];
 
@@ -449,25 +421,22 @@
 
         function openModal(index) {
             const data = portfolioData[index];
-            
             modalTitle.innerText = data.title;
             modalDesc.innerText = data.desc;
             modalImages.innerHTML = '';
 
             data.images.forEach(src => {
-                // Checa se o arquivo é MP4
                 if (src.toLowerCase().endsWith('.mp4')) {
                     const video = document.createElement('video');
                     video.src = src;
                     video.controls = true;
-                    video.muted = true;
                     video.loop = true;
+                    video.muted = true;
                     modalImages.appendChild(video);
                 } else {
                     const img = document.createElement('img');
                     img.src = src;
-                    img.alt = data.title;
-                    img.onerror = function() { this.src = 'https://via.placeholder.com/800x600/222/555?text=Imagem+Carregando'; };
+                    img.onerror = function() { this.src = 'https://via.placeholder.com/800x600/222/555?text=Carregando'; };
                     modalImages.appendChild(img);
                 }
             });
@@ -476,26 +445,16 @@
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal(event) {
-            if (event.target === modal) {
-                closeModalBtn();
-            }
-        }
+        function closeModal(event) { if (event.target === modal) closeModalBtn(); }
 
         function closeModalBtn() {
-            // Pausa todos os vídeos ao fechar o modal para evitar áudio fantasma
             const videos = modalImages.querySelectorAll('video');
             videos.forEach(v => v.pause());
-            
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                closeModalBtn();
-            }
-        });
+        document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModalBtn(); });
     </script>
 </body>
 </html>
