@@ -35,14 +35,12 @@
         ul { list-style: none; }
         img { display: block; max-width: 100%; }
 
-        /* Container Centralizado */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* HEADER */
         header {
             padding: 40px 0;
             display: flex;
@@ -54,7 +52,6 @@
         .socials { display: flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); }
         .socials a:hover { color: var(--text-primary); }
 
-        /* HERO SECTION */
         .hero {
             padding: 80px 0 100px;
             display: grid;
@@ -120,7 +117,6 @@
             text-align: center;
         }
 
-        /* VITRINE / GRID DE PROJETOS */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -158,7 +154,6 @@
         .card-info span { color: var(--text-secondary); font-size: 0.9rem; }
         .tag { font-size: 0.75rem; border: 1px solid #333; padding: 4px 10px; border-radius: 20px; color: #888; }
 
-        /* --- MODAL --- */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -176,10 +171,7 @@
             padding: 40px 20px;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
         .modal-container {
             background: var(--modal-bg);
@@ -214,38 +206,17 @@
         }
         .close-modal:hover { background: #fff; color: #000; }
 
-        .modal-header {
-            padding: 40px;
-            border-bottom: 1px solid #222;
-        }
-
+        .modal-header { padding: 40px; border-bottom: 1px solid #222; }
         .modal-header h2 { font-size: 2rem; margin-bottom: 10px; }
         .modal-header p { color: var(--text-secondary); line-height: 1.6; }
 
-        .modal-body {
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .modal-body { padding: 40px; display: flex; flex-direction: column; gap: 20px; }
+        .modal-body img, .modal-body video { width: 100%; height: auto; border-radius: 4px; }
 
-        .modal-body img, .modal-body video {
-            width: 100%;
-            height: auto;
-            border-radius: 4px;
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid var(--accent);
-            padding: 80px 0;
-            text-align: center;
-        }
-
+        footer { border-top: 1px solid var(--accent); padding: 80px 0; text-align: center; }
         footer h2 { font-size: 2rem; margin-bottom: 20px; }
         footer p { color: var(--text-secondary); margin-bottom: 40px; }
 
-        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
             body { text-align: center; }
             header { flex-direction: column; gap: 20px; }
@@ -290,15 +261,34 @@
         <section class="projects-grid">
             
             <div class="project-card" onclick="openModal(0)">
-                <div class="card-img">
-                    <img src="gl.jpg" alt="Grupo Lar">
-                </div>
+                <div class="card-img"><img src="gl.jpg" alt="Grupo Lar"></div>
                 <div class="card-info">
-                    <div>
-                        <h3>Grupo Lar - Videos Google ADS</h3>
-                        <span>Performance & Motion Design</span>
-                    </div>
+                    <div><h3>Grupo Lar - Videos Google ADS</h3><span>Performance & Motion Design</span></div>
                     <span class="tag">Ads</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(7)">
+                <div class="card-img"><img src="urb1.png" alt="Urban"></div>
+                <div class="card-info">
+                    <div><h3>Urban - Redes Sociais</h3><span>Social Media & Sustentabilidade</span></div>
+                    <span class="tag">Fashion</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(8)">
+                <div class="card-img"><img src="cc8.jpg" alt="Canto Criativo"></div>
+                <div class="card-info">
+                    <div><h3>Canto Criativo</h3><span>Rebrand e Identidade Visual</span></div>
+                    <span class="tag">Branding</span>
+                </div>
+            </div>
+
+            <div class="project-card" onclick="openModal(9)">
+                <div class="card-img"><img src="neres1.png" alt="Sargento Neres"></div>
+                <div class="card-info">
+                    <div><h3>Sargento Neres</h3><span>Outdoor de Impacto (OOH)</span></div>
+                    <span class="tag">Print</span>
                 </div>
             </div>
 
@@ -342,7 +332,7 @@
                 </div>
             </div>
 
-             <div class="project-card" onclick="openModal(6)">
+            <div class="project-card" onclick="openModal(6)">
                 <div class="card-img"><img src="T6.png" alt="SELECTED WORKS"></div>
                 <div class="card-info">
                     <div><h3>SELECTED WORKS</h3><span>Campanhas publicitárias</span></div>
@@ -411,6 +401,21 @@
                 title: "Grandes Marcas", 
                 desc: "Colaborações estratégicas para Oreo, Netflix e Itaú.", 
                 images: ["p1.png", "p2.png", "p3.png", "p4.png", "p8.png"] 
+            },
+            { 
+                title: "Posts para Redes Sociais – Urban", 
+                desc: "Série de posts para Instagram focada em moda urbana e sustentável. Peças modernas com textos estratégicos.", 
+                images: ["urb1.png", "urb2.png", "urb3.png", "urb4.png", "urb5.png"] 
+            },
+            { 
+                title: "Rebrand da marca Canto Criativo", 
+                desc: "Redesenho completo da identidade visual da Canto Criativo, focando em versatilidade e presença digital.", 
+                images: ["cc8.jpg", "cc1.png", "cc2.jpg", "cc3.jpg", "cc4.jpg", "cc5.jpg", "cc6.jpg", "cc7.jpg"] 
+            },
+            { 
+                title: "Outdoor de Agradecimento – Sargento Neres", 
+                desc: "Outdoor de 9m x 3m com tipografia contrastante (Montserrat e Manuscrita) e equilíbrio visual para alto impacto em Embu-Guaçu.", 
+                images: ["neres1.png", "neres2.png"] 
             }
         ];
 
@@ -428,10 +433,7 @@
             data.images.forEach(src => {
                 if (src.toLowerCase().endsWith('.mp4')) {
                     const video = document.createElement('video');
-                    video.src = src;
-                    video.controls = true;
-                    video.loop = true;
-                    video.muted = true;
+                    video.src = src; video.controls = true; video.loop = true; video.muted = true;
                     modalImages.appendChild(video);
                 } else {
                     const img = document.createElement('img');
@@ -446,14 +448,12 @@
         }
 
         function closeModal(event) { if (event.target === modal) closeModalBtn(); }
-
         function closeModalBtn() {
             const videos = modalImages.querySelectorAll('video');
             videos.forEach(v => v.pause());
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-
         document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModalBtn(); });
     </script>
 </body>
